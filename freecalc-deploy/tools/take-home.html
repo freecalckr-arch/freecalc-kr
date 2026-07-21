@@ -183,6 +183,59 @@ footer .links{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:12px;font-weigh
 footer a{color:var(--muted);text-decoration:none}
 @media (prefers-reduced-motion:reduce){.bar div,.next a{transition:none}}
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "실수령액 비교 계산기",
+  "url": "https://freecalc.kr/tools/take-home",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web",
+  "description": "월 지급액을 입력하면 프리랜서(3.3%)와 정규직(4대보험·소득세)의 실수령액을 비교합니다.",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "프리랜서 계산기",
+    "url": "https://freecalc.kr/"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "💰프리랜서가 실수령이 더 많은데 유리한 건가요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "표면 실수령은 프리랜서가 크지만, 정규직 공제에는 국민연금(노후 수령)·건강보험 직장가입 혜택이 포함됩니다. 프리랜서는 같은 보험을 지역가입자로 따로 내야 할 수 있고 퇴직금·연차도 없으므로, 단순 금액 비교보다 총 보상 관점으로 봐야 합니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "📄정규직 소득세가 급여명세서와 왜 다르죠?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "이 계산기는 간이세액표를 근사한 값을 사용합니다. 실제 원천징수는 회사의 신청 비율(80/100/120%), 비과세 항목, 부양가족 세부 조건에 따라 달라집니다. 정확한 값은 급여명세서와 홈택스를 기준으로 하세요."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "👪부양가족 수는 어디에 반영되나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "정규직 소득세 계산의 인적공제(1인당 연 150만 원)에 반영됩니다. 부양가족이 많을수록 소득세가 줄어 실수령액이 늘어납니다. 프리랜서의 3.3%에는 영향이 없습니다."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <div class="wrap">

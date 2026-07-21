@@ -237,6 +237,75 @@ footer nav a{color:var(--muted);text-decoration:none;font-weight:600}
   .bar div,.chip,.seg button,.next a{transition:none}
 }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "부가세 포함 견적 계산기",
+  "url": "https://freecalc.kr/tools/vat-quote",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web",
+  "description": "받고 싶은 금액을 입력하면 부가세를 더한 견적 총액을 계산합니다. 견적총액에서 역산도 지원합니다.",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "프리랜서 계산기",
+    "url": "https://freecalc.kr/"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "🧾\"부가세 별도\"와 \"부가세 포함\"은 뭐가 다른가요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "\"부가세 별도\"는 적힌 금액에 10%를 더해서 청구한다는 뜻이고, \"부가세 포함\"은 적힌 금액 안에 이미 부가세가 들어있다는 뜻입니다. 계약 전에 어느 쪽인지 명확히 해두면 나중에 분쟁을 줄일 수 있습니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "🌱저는 간이과세자인데 이 계산이 맞나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "간이과세자는 업종별 부가가치율에 따라 실제 부담률이 1.5%~4.5%로 다릅니다. 이 계산기는 매출세액 10%를 그대로 더하는 일반과세자 기준이니, 간이과세자라면 부가세 환급 계산기에서 확인해보세요."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "📄세금계산서는 언제 발행하나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "재화·용역을 공급한 날(보통 대금을 받거나 서비스를 완료한 날)을 기준으로 발행합니다. 다음 달 10일까지는 발행해야 가산세를 피할 수 있습니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "💰받은 부가세는 언제 어떻게 납부하나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "일반과세자는 1월(하반기분)과 7월(상반기분)에 부가세를 신고·납부합니다. 받은 부가세를 미리 별도 계좌에 모아두면 신고 시즌에 여유롭게 처리할 수 있습니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "🔢매입세액공제는 왜 중요한가요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "사업 관련 지출에 대해 세금계산서·카드전표 등 증빙을 챙기면, 그만큼 매입세액을 공제받아 실제 납부할 부가세가 줄어듭니다. 이 계산기는 공급가액 기준 견적만 다루므로, 실제 납부세액은 부가세 환급 계산기로 따로 확인하세요."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <div class="wrap">
