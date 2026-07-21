@@ -1,0 +1,188 @@
+/* ============================================================
+   프리랜서 계산기 — 공통 디자인 시스템 (common.css)
+   모든 페이지가 이 파일 하나를 기준으로 삼습니다.
+   새 페이지를 만들 때는 이 블록을 그대로 복사해서 시작하고,
+   공통 요소(색상·버튼·카드·FAQ·네비·푸터 등)를 고칠 땐 여기부터 고친 뒤
+   각 페이지에 동기화합니다.
+   ============================================================ */
+
+:root{
+  --bg:#FFFFFF; --hover:#F7F7F5; --surface:#FFFFFF;
+  --ink:#191919; --muted:#787774; --faint:#9B9A97;
+  --line:#EAEAE8; --accent:#191919; --accent-soft:#F1F1EF; --slate:#2B2F36;
+  --shadow:0 1px 2px rgba(0,0,0,.04),0 16px 40px rgba(23,25,28,.07);
+  --r:12px;
+  /* 차트/그래프 시그니처 컬러 — 전 페이지 통일 (실수령·소득세·지방소득세) */
+  --chart-net:#1FAE5F; --chart-net-soft:#E9F8EF;
+  --chart-tax:#F0A93E; --chart-local:#4C7CF0; --chart-ded:#D8DAD5;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:"Pretendard Variable",Pretendard,-apple-system,sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.6;font-size:16px;
+  -webkit-font-smoothing:antialiased;
+}
+.num{font-family:"Space Grotesk","Pretendard Variable",sans-serif;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.wrap{max-width:800px;margin:0 auto;padding:0 20px 90px}
+
+/* ── nav / 로고 (모든 페이지 동일) ── */
+nav{display:flex;justify-content:space-between;align-items:center;padding:20px 0}
+.logo{display:flex;align-items:center;text-decoration:none;color:var(--ink)}
+.logo img{height:39px;width:auto;display:block}
+nav .links{display:flex;gap:18px;font-size:14px;color:var(--muted);font-weight:600}
+nav .links a{color:inherit;text-decoration:none}
+
+/* ── eyebrow / tagline pill (홈 tagline, 상세 eyebrow 공통) ── */
+.eyebrow,.tagline{
+  display:inline-block;font-size:12px;font-weight:700;letter-spacing:.13em;color:var(--ink);
+  background:var(--hover);border-radius:999px;padding:6px 13px;margin-bottom:16px;text-transform:none;
+}
+
+/* ── 노란 안내 콜아웃 (홈 .callout / 상세 .guide-box 공통) ── */
+.callout,.guide-box{
+  display:flex;gap:10px;align-items:flex-start;background:#FEF9E7;border-radius:12px;
+  padding:14px 16px;margin-bottom:18px;font-size:13.5px;line-height:1.55;color:#5C5638;
+}
+.callout .emo,.guide-box .emo{font-size:16px;line-height:1.45;flex:none}
+.callout b,.guide-box b{color:#3D3A22}
+
+/* ── 버튼: 검정 CTA(흰 배경 위) / 아웃라인 보조 버튼 ── */
+.actions{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap;justify-content:center}
+.actions button{
+  display:flex;align-items:center;gap:7px;justify-content:center;
+  font:inherit;font-size:14px;font-weight:700;padding:12px 18px;border-radius:11px;cursor:pointer;transition:all .15s;
+}
+.btn-share{border:none;background:var(--ink);color:#fff}
+.btn-share:hover{background:#000}
+.btn-copy{border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+.btn-copy:hover{border-color:var(--ink)}
+.share-note{font-size:12px;color:var(--muted);margin-top:10px;text-align:center}
+
+/* ── 신뢰 배지 ── */
+.trust{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px;justify-content:center}
+.trust span{font-size:12px;font-weight:600;color:var(--muted);background:var(--bg);border-radius:7px;padding:5px 10px}
+
+/* ── 금액 칩(quick) ── */
+.quick{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+.quick button{
+  font:inherit;font-size:13px;font-weight:600;padding:8px 14px;border-radius:999px;cursor:pointer;
+  border:1px solid var(--line);background:var(--surface);color:var(--muted);transition:all .15s;
+}
+.quick button:hover{border-color:var(--ink);color:var(--ink)}
+
+/* ── nav 계산기 드롭다운 (개별 계산기 페이지 nav 전용) ── */
+.nav-pick{position:relative}
+.nav-pick-btn{
+  font:inherit;font-size:14px;font-weight:600;color:var(--muted);background:none;border:none;
+  cursor:pointer;display:flex;align-items:center;gap:4px;padding:0;
+}
+.nav-pick-btn:hover{color:var(--ink)}
+.nav-pick-btn svg{transition:transform .15s}
+.nav-pick.open .nav-pick-btn{color:var(--ink)}
+.nav-pick.open .nav-pick-btn svg{transform:rotate(180deg)}
+.nav-pick-menu{
+  position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%);min-width:220px;
+  background:#FFFFFF;border:1px solid var(--line);border-radius:14px;
+  box-shadow:0 4px 12px rgba(0,0,0,.06),0 12px 32px rgba(23,25,28,.12);
+  padding:6px;display:none;z-index:200;
+}
+.nav-pick.open .nav-pick-menu{display:block}
+.nav-pick-menu a{
+  display:flex;align-items:center;gap:9px;font-size:14px;font-weight:600;color:var(--ink);
+  text-decoration:none;border-radius:9px;padding:10px 12px;white-space:nowrap;
+}
+.nav-pick-menu a:hover{background:var(--hover)}
+.nav-pick-menu a.current{font-weight:700;background:var(--hover)}
+.nav-pick-menu a .soon{margin-left:auto;font-size:10.5px;font-weight:700;color:var(--faint);background:var(--hover);border-radius:6px;padding:2px 6px}
+.nav-pick-menu a.current .soon{background:#fff}
+
+/* ── 모바일 nav: 햄버거 메뉴 ── */
+.nav-toggle{display:none}
+@media (max-width:640px){
+  nav{position:relative}
+  .nav-toggle{
+    display:flex;align-items:center;justify-content:center;
+    width:38px;height:38px;border:1px solid var(--line);border-radius:10px;
+    background:var(--surface);color:var(--ink);cursor:pointer;flex:none;
+  }
+  nav .links{
+    display:none;position:absolute;top:calc(100% + 8px);left:0;right:0;
+    flex-direction:column;align-items:stretch;gap:2px;
+    background:#FFFFFF;border:1px solid var(--line);border-radius:14px;
+    box-shadow:0 4px 12px rgba(0,0,0,.06),0 12px 32px rgba(23,25,28,.12);
+    padding:8px;z-index:150;
+  }
+  nav .links.open{display:flex}
+  nav .links > a{padding:12px 10px;border-radius:9px}
+  nav .links > a:hover{background:var(--hover)}
+  .nav-pick{width:100%}
+  .nav-pick-btn{width:100%;justify-content:space-between;padding:12px 10px;border-radius:9px}
+  .nav-pick-btn:hover{background:var(--hover)}
+  .nav-pick-menu{
+    position:static;transform:none;box-shadow:none;border:none;padding:0;
+    min-width:0;width:100%;margin-top:2px;background:var(--hover);border-radius:9px;
+  }
+}
+
+/* ── 카테고리 탭 (자료실 등 콘텐츠 필터링 공용) ── */
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.tabs button{
+  font:inherit;font-size:13px;font-weight:700;padding:8px 15px;border-radius:999px;cursor:pointer;
+  border:1px solid var(--line);background:var(--surface);color:var(--muted);transition:all .15s;
+}
+.tabs button:hover{border-color:var(--ink);color:var(--ink)}
+.tabs button.active{background:var(--ink);border-color:var(--ink);color:#fff}
+
+/* ── 섹션 제목 ── */
+section{margin-top:56px}
+h2{font-size:22px;font-weight:800;letter-spacing:-.02em;margin-bottom:16px}
+
+/* ── 해설 카드(어떻게 계산되나요) ── */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px;margin-bottom:12px}
+.card h3{font-size:16px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:9px}
+.card h3 .hi{font-size:19px;line-height:1}
+.card p{font-size:14.5px;color:var(--muted);line-height:1.75}
+.card p+p{margin-top:10px}
+.card p b{color:var(--ink)}
+.formula{
+  font-family:"Space Grotesk","Pretendard Variable",sans-serif;font-variant-numeric:tabular-nums;
+  background:var(--hover);border-radius:10px;padding:14px 16px;font-size:16.5px;margin:10px 0;
+  font-weight:600;color:var(--ink);width:100%;text-align:center;
+}
+
+/* ── 링크 / 관련 계산기(next) — 화살표는 전 페이지 동일 스펙 ── */
+a{color:var(--ink);font-weight:700;text-underline-offset:3px}
+.inline-link{color:var(--ink);font-weight:700;text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--line)}
+.inline-link:hover{text-decoration-color:var(--ink)}
+.next{display:grid;gap:10px}
+.next a{
+  display:flex;justify-content:space-between;align-items:center;background:var(--surface);
+  border:1px solid var(--line);border-radius:14px;padding:17px 18px;text-decoration:none;
+  font-weight:700;font-size:15px;transition:all .15s;
+}
+.next a:hover{border-color:var(--ink);transform:translateY(-1px)}
+.next a small{display:block;font-weight:500;font-size:12.5px;color:var(--muted);margin-top:2px}
+.next a::after{content:"→";color:var(--muted);font-weight:700}
+
+/* ── FAQ (details/summary) — 화살표 동일 스펙 ── */
+details{background:var(--surface);border:1px solid var(--line);border-radius:13px;margin-bottom:10px;overflow:hidden}
+summary{padding:16px 18px;font-weight:700;font-size:15px;cursor:pointer;list-style:none;display:flex;align-items:center;gap:10px}
+summary::after{content:"→";color:var(--muted);font-weight:700;margin-left:auto}
+summary .qi{font-size:17px;line-height:1;flex:none}
+summary::-webkit-details-marker{display:none}
+details p{padding:0 18px 16px 42px;font-size:14.5px;color:var(--muted);line-height:1.75}
+details p+p{margin-top:10px}
+details p b{color:var(--ink)}
+details[open] summary{border-bottom:1px solid var(--line);margin-bottom:12px}
+
+/* ── 광고 슬롯 / 푸터 ── */
+.ad-slot{margin:40px 0;min-height:100px;border:1px dashed var(--line);border-radius:13px;display:grid;place-items:center;color:#B9BCB6;font-size:12px;letter-spacing:.15em}
+footer{margin-top:64px;padding-top:24px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+footer nav{padding:0 0 12px;justify-content:flex-start;gap:16px}
+footer nav a,footer .links a{color:var(--muted);text-decoration:none;font-weight:600}
+footer .links{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:12px}
+
+@media (prefers-reduced-motion:reduce){
+  .bar div,.chip,.seg button,.next a,.tool{transition:none}
+}
