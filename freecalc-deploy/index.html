@@ -10,8 +10,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-<link rel="stylesheet" href="/common.css"> <!-- 공통 디자인 시스템: 색상·네비·버튼·카드·FAQ·화살표·푸터 등. 아래 <style>은 배포 전까지 preview 호환용 미러입니다 -->
-<script src="/common.js"></script> <!-- 공통 스크립트: 토스트·결과 공유·복사·공유 링크 자동 채우기 -->
+<link rel="stylesheet" href="common.css"> <!-- 공통 디자인 시스템: 색상·네비·버튼·카드·FAQ·화살표·푸터 등. 아래 <style>은 배포 전까지 preview 호환용 미러입니다 -->
+<script src="common.js"></script> <!-- 공통 스크립트: 토스트·결과 공유·복사·공유 링크 자동 채우기 -->
 <style>
 :root{
   --bg:#FFFFFF; --hover:#F7F7F5; --ink:#191919; --muted:#787774; --faint:#9B9A97;
@@ -238,7 +238,7 @@ h2{font-size:22px;font-weight:800;letter-spacing:-.025em}
 .change a:hover{opacity:.85}
 
 /* 신뢰 마퀴 (노션식 흐르는 배지) */
-.marquee{margin-top:52px;overflow:hidden;position:relative;width:100vw;left:50%;transform:translateX(-50%);
+.marquee{margin-top:52px;overflow:hidden;position:relative;width:100%;
   -webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);
   mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
 .marquee .track{display:flex;width:max-content;gap:0;animation:marquee 26s linear infinite}
