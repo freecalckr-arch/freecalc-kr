@@ -329,7 +329,18 @@ footer nav a{color:var(--muted);text-decoration:none;font-weight:600}
             <a href="/tools/income-tax">📊 종합소득세 예상 계산기</a>
       </div>
     </div>
-    <a href="/#guides">세금 가이드</a><a href="/#library">자료실</a><a href="/#faq">FAQ</a>
+    <div class="nav-pick" id="navPick2">
+      <button type="button" class="nav-pick-btn" id="navPickBtn2" aria-haspopup="listbox" aria-expanded="false">
+        세금 가이드
+        <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="nav-pick-menu" id="navPickMenu2" role="listbox">
+            <a href="/guides/schedule">📅 신고 일정 캘린더</a>
+            <a href="/guides/receipt-finder">🧭 증빙 방식 찾기</a>
+            <a href="/guides/withholding-vs-invoice">⚖️ 원천징수 vs 세금계산서</a>
+      </div>
+    </div>
+    <a href="/#library">자료실</a><a href="/#faq">FAQ</a>
   </div>
 </nav>
 
@@ -470,17 +481,32 @@ footer nav a{color:var(--muted);text-decoration:none;font-weight:600}
 
 <script>
 
-/* nav 계산기 드롭다운 토글 */
+/* nav 드롭다운(계산기·세금 가이드) 토글 — 여러 개 공용 */
 (function(){
-  const pick = document.getElementById('navPick');
-  if(!pick) return;
-  const btn = document.getElementById('navPickBtn');
-  btn.addEventListener('click', e=>{
-    e.stopPropagation();
-    const open = pick.classList.toggle('open');
-    btn.setAttribute('aria-expanded', open);
+  const picks = document.querySelectorAll('.nav-pick');
+  picks.forEach(pick=>{
+    const btn = pick.querySelector('.nav-pick-btn');
+    if(!btn) return;
+    btn.addEventListener('click', e=>{
+      e.stopPropagation();
+      picks.forEach(p=>{
+        if(p !== pick){
+          p.classList.remove('open');
+          const b = p.querySelector('.nav-pick-btn');
+          if(b) b.setAttribute('aria-expanded','false');
+        }
+      });
+      const open = pick.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open);
+    });
   });
-  document.addEventListener('click', ()=>{ pick.classList.remove('open'); btn.setAttribute('aria-expanded','false'); });
+  document.addEventListener('click', ()=>{
+    picks.forEach(p=>{
+      p.classList.remove('open');
+      const b = p.querySelector('.nav-pick-btn');
+      if(b) b.setAttribute('aria-expanded','false');
+    });
+  });
 })();
 
 /* 모바일 햄버거 메뉴 토글 */
