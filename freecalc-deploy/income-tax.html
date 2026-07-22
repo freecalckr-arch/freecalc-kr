@@ -1,0 +1,722 @@
+<!-- build: v2 -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>종합소득세 예상 계산기 — 5월 신고 예상 세액 | 프리랜서 계산기</title>
+<meta name="description" content="연 수입과 경비를 입력하면 5월에 낼 종합소득세 예상액을 계산합니다. 기납부세액(3.3%)과 비교해 환급·추가납부 여부도 확인할 수 있습니다.">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="프리랜서 계산기">
+<meta property="og:title" content="종합소득세 예상 계산기 — 5월 신고 예상 세액 | 프리랜서 계산기">
+<meta property="og:description" content="연 수입과 경비를 입력하면 5월에 낼 종합소득세 예상액을 계산합니다. 기납부세액(3.3%)과 비교해 환급·추가납부 여부도 확인할 수 있습니다.">
+<meta property="og:image" content="https://freecalc.kr/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://freecalc.kr/tools/income-tax">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="종합소득세 예상 계산기 — 5월 신고 예상 세액 | 프리랜서 계산기">
+<meta name="twitter:description" content="연 수입과 경비를 입력하면 5월에 낼 종합소득세 예상액을 계산합니다. 기납부세액(3.3%)과 비교해 환급·추가납부 여부도 확인할 수 있습니다.">
+<meta name="twitter:image" content="https://freecalc.kr/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="/common.css"> <!-- 공통 디자인 시스템: 색상·네비·버튼·카드·FAQ·화살표·푸터 등. 아래 <style>은 배포 전까지 preview 호환용 미러입니다 -->
+<script src="/common.js"></script> <!-- 공통 스크립트: 토스트·결과 공유·복사·공유 링크 자동 채우기 -->
+<style>
+:root{
+  --bg:#FFFFFF; --hover:#F7F7F5;
+  --surface:#FFFFFF;
+  --ink:#191919;
+  --muted:#787774;
+  --faint:#9B9A97;
+  --line:#EAEAE8;
+  --accent:#191919;
+  --accent-soft:#F1F1EF;
+  --slate:#2B2F36;
+  --shadow:0 1px 2px rgba(0,0,0,.04),0 16px 40px rgba(23,25,28,.07);
+  --r:12px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:"Pretendard Variable",Pretendard,-apple-system,sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.6;font-size:16px;
+}
+.num{font-family:"Space Grotesk","Pretendard Variable",sans-serif;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.wrap{max-width:800px;margin:0 auto;padding:0 20px 90px}
+
+/* ── nav ── */
+nav{display:flex;justify-content:space-between;align-items:center;padding:20px 0}
+.logo{font-weight:800;font-size:19px;letter-spacing:-.02em;display:flex;align-items:center;gap:6px}
+.logo img{height:39px;width:auto;display:block}
+nav .links{display:flex;gap:18px;font-size:14px;color:var(--muted);font-weight:600}
+nav .links a{color:inherit;text-decoration:none}
+.nav-pick{position:relative}
+.nav-pick-btn{
+  font:inherit;font-size:14px;font-weight:600;color:var(--muted);background:none;border:none;
+  cursor:pointer;display:flex;align-items:center;gap:4px;padding:0;
+}
+.nav-pick-btn:hover{color:var(--ink)}
+.nav-pick-btn svg{transition:transform .15s}
+.nav-pick.open .nav-pick-btn{color:var(--ink)}
+.nav-pick.open .nav-pick-btn svg{transform:rotate(180deg)}
+.nav-pick-menu{
+  position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%);min-width:220px;
+  background:#FFFFFF;border:1px solid var(--line);border-radius:14px;
+  box-shadow:0 4px 12px rgba(0,0,0,.06),0 12px 32px rgba(23,25,28,.12);
+  padding:6px;display:none;z-index:200;
+}
+.nav-pick.open .nav-pick-menu{display:block}
+.nav-pick-menu a{
+  display:flex;align-items:center;gap:9px;font-size:14px;font-weight:600;color:var(--ink);
+  text-decoration:none;border-radius:9px;padding:10px 12px;white-space:nowrap;
+}
+.nav-pick-menu a:hover{background:var(--hover)}
+.nav-pick-menu a.current{font-weight:700;background:var(--hover)}
+.nav-pick-menu a .soon{margin-left:auto;font-size:10.5px;font-weight:700;color:var(--faint);background:var(--hover);border-radius:6px;padding:2px 6px}
+.nav-pick-menu a.current .soon{background:#fff}
+
+/* ── 모바일 nav: 햄버거 메뉴 ── */
+.nav-toggle{display:none}
+@media (max-width:640px){
+  nav{position:relative}
+  .nav-toggle{
+    display:flex;align-items:center;justify-content:center;
+    width:38px;height:38px;border:1px solid var(--line);border-radius:10px;
+    background:var(--surface);color:var(--ink);cursor:pointer;flex:none;
+  }
+  nav .links{
+    display:none;position:absolute;top:calc(100% + 8px);left:0;right:0;
+    flex-direction:column;align-items:stretch;gap:2px;
+    background:#FFFFFF;border:1px solid var(--line);border-radius:14px;
+    box-shadow:0 4px 12px rgba(0,0,0,.06),0 12px 32px rgba(23,25,28,.12);
+    padding:8px;z-index:150;
+  }
+  nav .links.open{display:flex}
+  nav .links > a{padding:12px 10px;border-radius:9px}
+  nav .links > a:hover{background:var(--hover)}
+  .nav-pick{width:100%}
+  .nav-pick-btn{width:100%;justify-content:space-between;padding:12px 10px;border-radius:9px}
+  .nav-pick-btn:hover{background:var(--hover)}
+  .nav-pick-menu{
+    position:static;transform:none;box-shadow:none;border:none;padding:0;
+    min-width:0;width:100%;margin-top:2px;background:var(--hover);border-radius:9px;
+  }
+}
+
+
+/* ── hero ── */
+.hero{padding:38px 0 30px}
+.eyebrow{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.13em;color:var(--ink);background:var(--hover);border-radius:999px;padding:6px 13px;margin-bottom:16px;text-transform:none}
+.eyebrow b{color:var(--accent);font-family:"Space Grotesk"}
+h1{font-size:clamp(32px,8vw,48px);font-weight:800;letter-spacing:-.035em;line-height:1.16}
+h1 em{font-style:normal;color:var(--accent);font-family:"Space Grotesk";font-weight:700}
+.hero p{margin-top:14px;color:var(--muted);font-size:16px;max-width:52ch}
+
+/* ── calc ── */
+.calc{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:26px 22px;margin-top:10px}
+.seg{display:flex;background:var(--hover);border-radius:12px;padding:4px;margin-bottom:22px}
+.seg button{
+  flex:1;font:inherit;font-size:14px;font-weight:700;padding:11px 6px;border:none;border-radius:9px;
+  background:transparent;color:var(--muted);cursor:pointer;transition:all .18s ease;
+}
+.seg button[aria-pressed="true"]{background:#FFFFFF;color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.seg button:not([aria-pressed="true"]):hover{color:var(--ink)}
+.guide-box{display:flex;gap:10px;align-items:flex-start;background:#FEF9E7;border-radius:12px;padding:14px 16px;margin-bottom:18px;font-size:13.5px;line-height:1.55;color:#5C5638}
+.guide-box .emo{font-size:16px;line-height:1.45;flex:none}
+.guide-box b{color:#3D3A22}
+label.field{display:block;font-size:13px;font-weight:700;color:var(--muted);margin-bottom:9px}
+.amount{display:flex;align-items:baseline;gap:10px;border-bottom:2px solid var(--ink);padding-bottom:8px;transition:border-color .18s}
+.amount:focus-within{border-color:var(--accent)}
+.amount input{
+  flex:1;border:none;background:transparent;outline:none;min-width:0;
+  font-family:"Space Grotesk","Pretendard Variable",sans-serif;
+  font-size:clamp(28px,7vw,36px);font-weight:700;letter-spacing:-.02em;color:var(--ink);
+  font-variant-numeric:tabular-nums;
+}
+.amount input::placeholder{color:#C9CBC6}
+.amount .won{font-size:18px;font-weight:700;color:var(--muted)}
+.field-block{margin-bottom:20px}
+.field-block:last-of-type{margin-bottom:0}
+.quick{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+.quick button{
+  font:inherit;font-size:13px;font-weight:600;padding:8px 14px;border-radius:999px;cursor:pointer;
+  border:1px solid var(--line);background:var(--surface);color:var(--muted);transition:all .15s;
+}
+.quick button:hover{border-color:var(--ink);color:var(--ink)}
+.paid-auto-btn{
+  font:inherit;font-size:13px;font-weight:600;padding:8px 14px;border-radius:999px;cursor:pointer;
+  border:1px solid var(--line);background:var(--surface);color:var(--muted);white-space:nowrap;transition:all .15s;flex:none;
+}
+.paid-auto-btn:hover{border-color:var(--ink);color:var(--ink)}
+.quick button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.rate-note{font-size:12.5px;color:var(--muted);line-height:1.6;margin-top:10px}
+.sel-row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+select.pill{
+  font:inherit;font-size:14px;font-weight:700;padding:10px 14px;border-radius:11px;cursor:pointer;
+  border:1px solid var(--line);background:var(--surface);color:var(--ink);appearance:none;
+  background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12"><path d="M2.5 4.5L6 8L9.5 4.5" stroke="%23787774" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+  background-repeat:no-repeat;background-position:right 12px center;padding-right:32px;
+}
+
+/* ── result ── */
+.result{margin-top:28px;display:none}
+.result.on{display:block}
+.headline{display:flex;justify-content:space-between;align-items:flex-end;gap:10px;flex-wrap:wrap}
+.headline .k{font-size:13px;font-weight:700;color:var(--muted)}
+.big{font-family:"Space Grotesk","Pretendard Variable",sans-serif;font-size:clamp(34px,9vw,46px);font-weight:700;letter-spacing:-.03em;line-height:1.05;font-variant-numeric:tabular-nums}
+.big small{font-size:.5em;font-weight:700;margin-left:2px}
+.chip{
+  display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--accent);
+  background:var(--accent-soft);border-radius:999px;padding:6px 12px;
+  opacity:0;transform:scale(.7);transition:all .25s cubic-bezier(.2,1.6,.4,1);
+}
+.chip.on{opacity:1;transform:scale(1)}
+.chip.refund{color:#1FAE5F;background:#E9F8EF}
+
+.rows{margin-top:18px;border-top:1px solid var(--line)}
+.row{display:flex;justify-content:space-between;align-items:baseline;padding:12px 2px;border-bottom:1px solid var(--line);font-size:15px}
+.row .k{color:var(--muted);font-weight:600}
+.row .v{font-weight:700}
+.row.minus .v{color:var(--slate)}
+.row.total{border-bottom:none;margin-top:2px;padding-top:14px;font-size:16.5px}
+.row.total .k{color:var(--ink);font-weight:700}
+.row.total .v{color:#AD1F1F;font-size:16.5px;font-weight:800}
+.row.total .v.refund{color:#1FAE5F}
+
+.actions{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap;justify-content:center}
+.actions button{display:flex;align-items:center;gap:7px;justify-content:center;
+  font:inherit;font-size:14px;font-weight:700;padding:12px 18px;border-radius:11px;cursor:pointer;transition:all .15s;
+}
+.btn-share{border:none;background:var(--ink);color:#fff}
+.btn-share:hover{background:#000}
+.btn-copy{border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+.btn-copy:hover{border-color:var(--ink)}
+.share-note{font-size:12px;color:var(--muted);margin-top:10px;text-align:center}
+.trust{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px;justify-content:center}
+.trust span{font-size:12px;font-weight:600;color:var(--muted);background:var(--bg);border-radius:7px;padding:5px 10px}
+
+/* ── sections ── */
+section{margin-top:56px}
+h2{font-size:22px;font-weight:800;letter-spacing:-.02em;margin-bottom:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px;margin-bottom:12px}
+.card h3{font-size:16px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:9px}
+.card h3 .hi{font-size:19px;line-height:1}
+.card p{font-size:14.5px;color:var(--muted);line-height:1.75}
+.card p+p{margin-top:10px}
+.card p b{color:var(--ink)}
+.formula{
+  font-family:"Space Grotesk","Pretendard Variable",sans-serif;font-variant-numeric:tabular-nums;
+  background:var(--hover);border-radius:10px;padding:14px 16px;font-size:15.5px;margin:10px 0;
+  font-weight:600;color:var(--ink);width:100%;text-align:center;
+}
+a{color:var(--ink);font-weight:700;text-underline-offset:3px}
+.next{display:grid;gap:10px}
+.next a{
+  display:flex;justify-content:space-between;align-items:center;background:var(--surface);
+  border:1px solid var(--line);border-radius:14px;padding:17px 18px;text-decoration:none;
+  font-weight:700;font-size:15px;transition:all .15s;
+}
+.next a:hover{border-color:var(--ink);transform:translateY(-1px)}
+.next a small{display:block;font-weight:500;font-size:12.5px;color:var(--muted);margin-top:2px}
+.next a::after{content:"→";color:var(--muted);font-weight:700}
+
+details{background:var(--surface);border:1px solid var(--line);border-radius:13px;margin-bottom:10px;overflow:hidden}
+summary{padding:16px 18px;font-weight:700;font-size:15px;cursor:pointer;list-style:none;display:flex;align-items:center;gap:10px}
+summary::after{content:"→";color:var(--muted);font-weight:700;margin-left:auto}
+summary .qi{font-size:17px;line-height:1;flex:none}
+summary::-webkit-details-marker{display:none}
+details p{padding:0 18px 16px 42px;font-size:14.5px;color:var(--muted);line-height:1.75}
+details p+p{margin-top:10px}
+details p b{color:var(--ink)}
+details[open] summary{border-bottom:1px solid var(--line);margin-bottom:12px}
+
+.ad-slot{margin:40px 0;min-height:100px;border:1px dashed var(--line);border-radius:13px;display:grid;place-items:center;color:#B9BCB6;font-size:12px;letter-spacing:.15em}
+
+footer{margin-top:64px;padding-top:24px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+footer nav{padding:0 0 12px;justify-content:flex-start;gap:16px}
+footer nav a{color:var(--muted);text-decoration:none;font-weight:600}
+
+@media (prefers-reduced-motion:reduce){
+  .chip,.seg button,.next a{transition:none}
+}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "종합소득세 예상 계산기",
+  "url": "https://freecalc.kr/tools/income-tax",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web",
+  "description": "연 수입과 경비를 입력하면 5월에 낼 종합소득세 예상액을 계산합니다.",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "프리랜서 계산기",
+    "url": "https://freecalc.kr/"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "KRW"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "📆종합소득세는 언제 신고하나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "매년 5월 1일부터 5월 31일까지 전년도 소득에 대해 신고·납부합니다. 성실신고확인대상자는 6월 30일까지 연장됩니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "📐단순경비율과 기준경비율은 뭐가 다른가요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "수입금액이 업종별 기준 이하인 소규모 사업자는 단순경비율(수입의 일정 비율을 경비로 인정)을 적용받고, 그 이상이면 기준경비율(주요경비는 증빙 기준, 나머지만 비율 적용)을 적용받습니다. 기준경비율은 대체로 경비 인정 비율이 낮아 세금이 늘어날 수 있습니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "💸3.3%로 이미 뗀 세금은 어떻게 반영되나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "1년간 원천징수당한 3.3%(소득세 3%+지방소득세 0.3%) 합계가 5월에 계산된 최종 세액보다 많으면 차액을 환급받고, 적으면 차액을 추가 납부합니다. '이미 낸 세금' 항목에 원천징수 합계를 입력하면 이 계산기가 자동으로 비교해드려요."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "👪기본공제는 어떻게 계산하나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "본인을 포함해 부양가족 1명당 연 150만 원을 소득금액에서 공제합니다. 배우자·직계존비속 등 부양가족 요건(소득·나이 기준)을 충족해야 합니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "📉세금을 더 줄이는 방법이 있나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "노란우산공제(최대 500만 원 소득공제), 연금저축·IRP 세액공제, 사업 관련 지출 증빙 꼼꼼히 챙기기 등이 대표적입니다. 이 계산기에는 반영되지 않았으니 참고용으로만 활용하세요."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<div class="wrap">
+
+<div id="site-nav"></div>
+<script src="/nav.js"></script>
+
+<div class="hero">
+  <div class="eyebrow">📊 종합소득세 · 5월 신고</div>
+  <h1>종합소득세 <em>예상</em> 계산기</h1>
+  <p>연 수입과 경비를 입력하면 5월에 낼 종합소득세를 예상합니다.<br>기납부세액과 비교해 환급·추가납부 여부도 확인하세요.</p>
+</div>
+
+<div class="calc">
+  <div class="seg" role="tablist">
+    <button id="mRate" aria-pressed="true" onclick="setMode('rate')">📐 경비율로 추정</button>
+    <button id="mDirect" aria-pressed="false" onclick="setMode('direct')">🧾 경비 직접 입력</button>
+  </div>
+
+  <div class="guide-box" id="guideBox"><span class="emo">💡</span><span id="guideBoxText">한 해 <b>총수입금액</b>과 업종별 <b>단순경비율</b>을 입력하면, 경비를 자동으로 추정해 예상 종합소득세를 계산해드려요. 정확한 경비 금액을 알고 있다면 '경비 직접 입력'을 이용하세요.</span></div>
+
+  <div class="field-block">
+    <label class="field" for="income">연 총수입금액</label>
+    <div class="amount">
+      <input id="income" inputmode="numeric" autocomplete="off" placeholder="40,000,000">
+      <span class="won">원</span>
+    </div>
+    <div class="quick">
+      <button onclick="setAmt('income',20000000)">2,000만</button>
+      <button onclick="setAmt('income',40000000)">4,000만</button>
+      <button onclick="setAmt('income',60000000)">6,000만</button>
+      <button onclick="setAmt('income',80000000)">8,000만</button>
+      <button onclick="setAmt('income',100000000)">1억</button>
+    </div>
+  </div>
+
+  <div class="field-block" id="rateWrap">
+    <label class="field">단순경비율 · 기본율 (수입 4,000만 원까지)</label>
+    <div class="quick" id="ratePicks">
+      <button data-rate="50" onclick="setRate(50)">50%</button>
+      <button data-rate="60" aria-pressed="true" onclick="setRate(60)">60% (기본)</button>
+      <button data-rate="65" onclick="setRate(65)">65%</button>
+      <button data-rate="70" onclick="setRate(70)">70%</button>
+      <button data-rate="80" onclick="setRate(80)">80%</button>
+    </div>
+    <p class="rate-note">인적용역(프리랜서) 사업자는 수입 4,000만 원까지 <b>기본율</b>, 초과분은 <b>초과율</b>이 따로 적용돼요.<br>홈택스에서 업종코드로 정확한 경비율을 확인하세요.</p>
+    <div id="exceedWrap" style="display:none;margin-top:16px">
+      <label class="field">단순경비율 · 초과율 (수입 4,000만 원 초과분)</label>
+      <div class="quick" id="exceedPicks">
+        <button data-rate="30" onclick="setExceedRate(30)">30%</button>
+        <button data-rate="40" onclick="setExceedRate(40)">40%</button>
+        <button data-rate="50" aria-pressed="true" onclick="setExceedRate(50)">50% (기본)</button>
+        <button data-rate="60" onclick="setExceedRate(60)">60%</button>
+      </div>
+      <p class="rate-note">수입 4,000만 원을 넘는 부분에는 보통 기본율보다 낮은 초과율이 적용돼요.<br>업종코드에 따라 정확한 비율은 <a href="https://www.nts.go.kr" target="_blank" rel="noopener">홈택스</a>에서 확인하세요.</p>
+    </div>
+  </div>
+
+  <div class="field-block" id="directWrap" style="display:none">
+    <label class="field" for="expense">필요경비 (실제 지출 합계)</label>
+    <div class="amount">
+      <input id="expense" inputmode="numeric" autocomplete="off" placeholder="15,000,000">
+      <span class="won">원</span>
+    </div>
+    <div class="quick">
+      <button onclick="setAmt('expense',5000000)">500만</button>
+      <button onclick="setAmt('expense',10000000)">1,000만</button>
+      <button onclick="setAmt('expense',15000000)">1,500만</button>
+      <button onclick="setAmt('expense',20000000)">2,000만</button>
+      <button onclick="setAmt('expense',30000000)">3,000만</button>
+    </div>
+  </div>
+
+  <div class="field-block">
+    <div class="sel-row">
+      <label class="field" for="deps" style="margin-bottom:0">기본공제 인원 (본인 포함)</label>
+      <select class="pill" id="deps" onchange="calc()">
+        <option value="1">1명</option>
+        <option value="2">2명</option>
+        <option value="3">3명</option>
+        <option value="4">4명</option>
+        <option value="5">5명</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="field-block">
+    <label class="field" for="paid">이미 낸 세금 (3.3% 원천징수 합계, 선택)</label>
+    <div class="amount">
+      <input id="paid" inputmode="numeric" autocomplete="off" placeholder="0">
+      <span class="won">원</span>
+    </div>
+    <div class="sel-row" style="margin-top:10px">
+      <span style="font-size:12.5px;color:var(--muted);font-weight:600">3.3% 공제하고 받은 수입이라면 자동 계산할 수 있어요</span>
+      <button class="paid-auto-btn" onclick="autoFillPaid()">💡 3.3%로 자동 계산</button>
+    </div>
+  </div>
+
+  <div class="result" id="result">
+    <div class="headline">
+      <div>
+        <div class="k" id="resultLabel">예상 총 세액 (소득세+지방소득세)</div>
+        <div class="big num"><span id="vMain">0</span><small>원</small></div>
+      </div>
+      <span class="chip" id="chip">✓ 계산 완료</span>
+    </div>
+
+    <div class="rows" id="rows"></div>
+
+    <div class="actions">
+      <button class="btn-share" onclick="shareLink()"><span>🔗</span> 결과 링크 공유</button>
+      <button class="btn-copy" onclick="copyText()"><span>📋</span> 텍스트 복사</button>
+    </div>
+    <p class="share-note">공유 링크에는 입력하신 금액이 포함됩니다.</p>
+
+    <div class="trust">
+      <span>적용 기준 2026년</span>
+      <span>업데이트 2026.07.21</span>
+    </div>
+  </div>
+</div>
+
+<div class="ad-slot">AD</div>
+
+<section>
+  <h2>어떻게 계산되나요?</h2>
+  <div class="card">
+    <h3><span class="hi">🧮</span>핵심 공식</h3>
+    <div class="formula">소득금액 = 총수입금액 − 필요경비</div>
+    <div class="formula">과세표준 = 소득금액 − 기본공제(인원 × 150만 원)</div>
+    <div class="formula">산출세액 = 과세표준 × 세율 − 누진공제액</div>
+    <div class="formula">최종 소득세 = 산출세액 − 표준세액공제(7만 원)</div>
+    <p>종합소득세는 소득이 높을수록 세율도 높아지는 <b>누진세</b>입니다. 과세표준 구간마다 세율(6%~45%)과 누진공제액이 정해져 있고, "과세표준 × 세율 − 누진공제액" 공식으로 산출세액을 구합니다. 근로소득 없이 종합소득만 있는 경우 <b>표준세액공제 7만 원</b>을 추가로 빼주며, 여기에 최종 소득세의 10%인 지방소득세를 더하면 예상 세액이 됩니다.</p>
+  </div>
+  <div class="card">
+    <h3><span class="hi">📐</span>2026년 종합소득세 세율표</h3>
+    <p>1,400만 원 이하 <b>6%</b> · 1,400만~5,000만 원 <b>15%</b>(누진공제 126만) · 5,000만~8,800만 원 <b>24%</b>(576만) · 8,800만~1억 5,000만 원 <b>35%</b>(1,544만) · 1억 5,000만~3억 원 <b>38%</b>(1,994만) · 3억~5억 원 <b>40%</b>(2,594만) · 5억~10억 원 <b>42%</b>(3,594만) · 10억 원 초과 <b>45%</b>(6,594만)</p>
+  </div>
+  <div class="card">
+    <h3><span class="hi">⚠️</span>주의할 점</h3>
+    <p>· <b>단순경비율</b>은 업종코드마다 정확한 수치가 다릅니다. 이 계산기는 인적용역(프리랜서) 사업자의 4,000만 원 기본율·초과율 구조는 반영했지만, 참고용 기본값(60%/50%)을 쓰므로 정확한 경비율은 <a href="https://www.nts.go.kr" target="_blank" rel="noopener">홈택스</a> '기준·단순경비율' 조회에서 확인하세요.</p>
+    <p>· 노란우산공제, 연금저축, 신용카드 사용액 공제, 보험료·의료비·교육비 세액공제 등은 반영되지 않았습니다. 표준세액공제(7만 원)만 기본 적용했으며, 실제 세액은 이보다 낮아질 수 있습니다.</p>
+    <p>· 수입금액이 일정 기준을 넘으면 단순경비율이 아닌 기준경비율이 적용되어 결과가 달라질 수 있습니다.</p>
+  </div>
+</section>
+
+<section>
+  <h2>관련 계산기</h2>
+  <div class="next">
+    <a href="/tools/withholding-33"><span>🧾 3.3% 원천징수 계산기<small>계약금액에서 실수령액까지 한 번에</small></span></a>
+    <a href="/tools/vat-refund"><span>💸 부가세 환급 계산기<small>매출·매입으로 납부·환급 예상액 계산</small></span></a>
+  </div>
+</section>
+
+<section>
+  <h2>자주 묻는 질문</h2>
+  <details>
+    <summary><span class="qi">📆</span>종합소득세는 언제 신고하나요?</summary>
+    <p>매년 5월 1일부터 5월 31일까지 전년도 소득에 대해 신고·납부합니다. 성실신고확인대상자는 6월 30일까지 연장됩니다.</p>
+  </details>
+  <details>
+    <summary><span class="qi">📐</span>단순경비율과 기준경비율은 뭐가 다른가요?</summary>
+    <p>수입금액이 업종별 기준 이하인 소규모 사업자는 <b>단순경비율</b>(수입의 일정 비율을 경비로 인정)을 적용받고, 그 이상이면 <b>기준경비율</b>(주요경비는 증빙 기준, 나머지만 비율 적용)을 적용받습니다. 기준경비율은 대체로 경비 인정 비율이 낮아 세금이 늘어날 수 있습니다.</p>
+  </details>
+  <details>
+    <summary><span class="qi">💸</span>3.3%로 이미 뗀 세금은 어떻게 반영되나요?</summary>
+    <p>1년간 원천징수당한 3.3%(소득세 3%+지방소득세 0.3%) 합계가 5월에 계산된 최종 세액보다 많으면 차액을 <b>환급</b>받고, 적으면 차액을 <b>추가 납부</b>합니다. '이미 낸 세금' 항목에 원천징수 합계를 입력하면 이 계산기가 자동으로 비교해드려요.</p>
+  </details>
+  <details>
+    <summary><span class="qi">👪</span>기본공제는 어떻게 계산하나요?</summary>
+    <p>본인을 포함해 부양가족 1명당 연 150만 원을 소득금액에서 공제합니다. 배우자·직계존비속 등 부양가족 요건(소득·나이 기준)을 충족해야 합니다.</p>
+  </details>
+  <details>
+    <summary><span class="qi">📉</span>세금을 더 줄이는 방법이 있나요?</summary>
+    <p>노란우산공제(최대 500만 원 소득공제), 연금저축·IRP 세액공제, 사업 관련 지출 증빙 꼼꼼히 챙기기 등이 대표적입니다. 이 계산기에는 반영되지 않았으니 참고용으로만 활용하세요.</p>
+  </details>
+</section>
+
+<div class="ad-slot">AD</div>
+
+<footer>
+  <nav><a href="/about">소개</a><a href="/contact">문의</a><a href="/privacy">개인정보처리방침</a><a href="/terms">이용약관</a></nav>
+  <p>본 결과는 참고용이며 법적 효력이 없습니다. 공식 기준은 <a href="https://www.nts.go.kr" target="_blank" rel="noopener">국세청</a>에서 확인하세요.<br>© 프리랜서 계산기 · freecalc.kr</p>
+</footer>
+
+</div>
+
+<script>
+
+
+
+const BRACKETS = [
+  {max:14000000, rate:0.06, deduct:0},
+  {max:50000000, rate:0.15, deduct:1260000},
+  {max:88000000, rate:0.24, deduct:5760000},
+  {max:150000000, rate:0.35, deduct:15440000},
+  {max:300000000, rate:0.38, deduct:19940000},
+  {max:500000000, rate:0.40, deduct:25940000},
+  {max:1000000000, rate:0.42, deduct:35940000},
+  {max:Infinity, rate:0.45, deduct:65940000},
+];
+const PER_DEP = 1500000;
+const SIMPLE_THRESHOLD = 40000000;
+const STANDARD_CREDIT = 70000;
+let mode = 'rate';
+let rate = 60;
+let exceedRate = 50;
+const $ = id => document.getElementById(id);
+const fmt = n => n.toLocaleString('ko-KR') + '원';
+let last = null;
+
+function setMode(m){
+  mode = m;
+  $('mRate').setAttribute('aria-pressed', m==='rate');
+  $('mDirect').setAttribute('aria-pressed', m==='direct');
+  $('rateWrap').style.display = m==='rate' ? '' : 'none';
+  $('directWrap').style.display = m==='direct' ? '' : 'none';
+  $('guideBoxText').innerHTML = m==='rate'
+    ? '한 해 <b>총수입금액</b>과 업종별 <b>단순경비율</b>을 입력하면, 경비를 자동으로 추정해 예상 종합소득세를 계산해드려요. 정확한 경비 금액을 알고 있다면 \'경비 직접 입력\'을 이용하세요.'
+    : '한 해 <b>총수입금액</b>과 실제 <b>필요경비</b> 금액을 입력하면 예상 종합소득세를 계산해드려요.';
+  calc();
+}
+function setRate(r){
+  rate = r;
+  document.querySelectorAll('#ratePicks button').forEach(b=>b.setAttribute('aria-pressed', Number(b.dataset.rate)===r));
+  calc();
+}
+function setExceedRate(r){
+  exceedRate = r;
+  document.querySelectorAll('#exceedPicks button').forEach(b=>b.setAttribute('aria-pressed', Number(b.dataset.rate)===r));
+  calc();
+}
+function setAmt(field, v){ $(field).value = v.toLocaleString('ko-KR'); calc(); }
+
+function autoFillPaid(){
+  const incomeRaw = $('income').value.replace(/[^0-9]/g,'');
+  if(!incomeRaw) return;
+  const income = parseInt(incomeRaw,10);
+  const est = Math.floor(income * 0.033 / 10) * 10;
+  $('paid').value = est.toLocaleString('ko-KR');
+  calc();
+}
+
+function calcTax(base){
+  if(base <= 0) return 0;
+  const b = BRACKETS.find(x => base <= x.max);
+  return Math.max(0, Math.round(base * b.rate - b.deduct));
+}
+
+function countUp(el, target){
+  const dur = 450, t0 = performance.now();
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches){ el.textContent = target.toLocaleString('ko-KR'); return; }
+  function tick(t){
+    const p = Math.min((t - t0)/dur, 1), e = 1 - Math.pow(1-p, 3);
+    el.textContent = Math.round(target * e).toLocaleString('ko-KR');
+    if (p < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+
+function calc(){
+  const incomeRaw = $('income').value.replace(/[^0-9]/g,'');
+  if(!incomeRaw){ $('result').classList.remove('on'); last = null; return; }
+  const income = parseInt(incomeRaw,10);
+  $('income').value = income.toLocaleString('ko-KR');
+
+  let expense;
+  const overThreshold = mode==='rate' && income > SIMPLE_THRESHOLD;
+  $('exceedWrap').style.display = overThreshold ? '' : 'none';
+  if(mode==='rate'){
+    if(overThreshold){
+      expense = Math.round(SIMPLE_THRESHOLD * rate / 100) + Math.round((income - SIMPLE_THRESHOLD) * exceedRate / 100);
+    } else {
+      expense = Math.round(income * rate / 100);
+    }
+  } else {
+    const expRaw = $('expense').value.replace(/[^0-9]/g,'');
+    expense = expRaw ? parseInt(expRaw,10) : 0;
+    if(expRaw) $('expense').value = expense.toLocaleString('ko-KR');
+  }
+
+  const deps = parseInt($('deps').value,10);
+  const deduction = deps * PER_DEP;
+  const earnings = Math.max(0, income - expense);
+  const base = Math.max(0, earnings - deduction);
+  const grossTax = calcTax(base);
+  const credit = Math.min(STANDARD_CREDIT, grossTax);
+  const incomeTax = grossTax - credit;
+  const localTax = Math.round(incomeTax * 0.1);
+  const totalTax = incomeTax + localTax;
+
+  const paidRaw = $('paid').value.replace(/[^0-9]/g,'');
+  const paid = paidRaw ? parseInt(paidRaw,10) : 0;
+  if(paidRaw) $('paid').value = paid.toLocaleString('ko-KR');
+  const diff = totalTax - paid;
+
+  last = {income, expense, earnings, deduction, base, grossTax, credit, incomeTax, localTax, totalTax, paid, diff, mode, rate, exceedRate, overThreshold, deps};
+
+  $('result').classList.add('on');
+  countUp($('vMain'), totalTax);
+  $('resultLabel').textContent = '예상 총 세액 (소득세+지방소득세)';
+  $('chip').classList.remove('refund');
+
+  let rowsHTML = `<div class="row"><span class="k">총수입금액</span><span class="v num">${fmt(income)}</span></div>
+    <div class="row minus"><span class="k">필요경비${mode==='rate' ? (overThreshold ? ' (기본율 '+rate+'%+초과율 '+exceedRate+'%)' : ' (경비율 '+rate+'%)') : ''}</span><span class="v num">− ${fmt(expense)}</span></div>
+    <div class="row"><span class="k">소득금액</span><span class="v num">${fmt(earnings)}</span></div>
+    <div class="row minus"><span class="k">기본공제 (${deps}명)</span><span class="v num">− ${fmt(deduction)}</span></div>
+    <div class="row"><span class="k">과세표준</span><span class="v num">${fmt(base)}</span></div>
+    <div class="row"><span class="k">산출세액 (누진세율)</span><span class="v num">${fmt(grossTax)}</span></div>
+    <div class="row minus"><span class="k">표준세액공제</span><span class="v num">− ${fmt(credit)}</span></div>
+    <div class="row"><span class="k">소득세 (결정세액)</span><span class="v num">${fmt(incomeTax)}</span></div>
+    <div class="row"><span class="k">지방소득세 (10%)</span><span class="v num">${fmt(localTax)}</span></div>`;
+  if(paid > 0){
+    const refund = diff < 0;
+    rowsHTML += `<div class="row"><span class="k">이미 낸 세금 (3.3%)</span><span class="v num">${fmt(paid)}</span></div>
+      <div class="row total"><span class="k">${refund ? '예상 환급세액' : '예상 추가납부세액'}</span><span class="v num${refund ? ' refund' : ''}">${fmt(Math.abs(diff))}</span></div>`;
+  } else {
+    rowsHTML += `<div class="row total"><span class="k">예상 총 세액</span><span class="v num">${fmt(totalTax)}</span></div>`;
+  }
+  $('rows').innerHTML = rowsHTML;
+  $('chip').classList.toggle('refund', paid > 0 && diff < 0);
+
+  const chip = $('chip'); chip.classList.remove('on'); void chip.offsetWidth; chip.classList.add('on');
+}
+
+function fallbackCopy(text){
+  try{
+    const ta=document.createElement('textarea');
+    ta.value=text; ta.style.position='fixed'; ta.style.opacity='0'; ta.style.left='-9999px';
+    document.body.appendChild(ta); ta.focus(); ta.select();
+    const ok=document.execCommand('copy');
+    document.body.removeChild(ta);
+    return ok;
+  }catch(e){ return false; }
+}
+function copyToClipboard(text){
+  return new Promise((resolve)=>{
+    if(navigator.clipboard && navigator.clipboard.writeText && window.isSecureContext){
+      navigator.clipboard.writeText(text).then(()=>resolve(true), ()=>resolve(fallbackCopy(text)));
+    } else {
+      resolve(fallbackCopy(text));
+    }
+  });
+}
+function shareLink(){
+  if(!last) return;
+  const params = { income: last.income, deps: last.deps, mode: last.mode };
+  if(last.mode==='rate'){ params.rate = last.rate; if(last.overThreshold) params.exceedRate = last.exceedRate; }
+  else params.expense = last.expense;
+  if(last.paid) params.paid = last.paid;
+  const usp = new URLSearchParams(params);
+  const url = location.origin + location.pathname + '?' + usp.toString();
+  copyToClipboard(url).then(ok=>{
+    if(ok) toast('결과 링크를 복사했어요');
+    else window.prompt('이 환경에서는 자동 복사가 막혀 있어요. 아래 링크를 직접 복사해주세요:', url);
+  });
+}
+function copyText(){
+  if(!last) return;
+  let t = `[프리랜서 계산기 · 종합소득세 예상]\n총수입금액 ${fmt(last.income)}\n필요경비 ${fmt(last.expense)}\n과세표준 ${fmt(last.base)}\n표준세액공제 −${fmt(last.credit)}\n소득세+지방소득세 ${fmt(last.totalTax)}`;
+  if(last.paid > 0){
+    const refund = last.diff < 0;
+    t += `\n기납부세액 ${fmt(last.paid)}\n${refund?'예상 환급':'예상 추가납부'} ${fmt(Math.abs(last.diff))}`;
+  }
+  t += `\nfreecalc.kr`;
+  copyToClipboard(t).then(ok=>{
+    if(ok) toast('결과를 복사했어요');
+    else window.prompt('이 환경에서는 자동 복사가 막혀 있어요. 아래 내용을 직접 복사해주세요:', t);
+  });
+}
+function toast(msg){
+  const el = document.createElement('div');
+  el.innerHTML = '<span style="margin-right:6px">✓</span>' + msg;
+  el.style.cssText = 'position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(6px);background:#EAF2FE;color:#191919;font-size:14px;font-weight:600;padding:12px 20px;border-radius:11px;z-index:99999;opacity:0;transition:opacity .2s,transform .2s;box-shadow:0 8px 24px rgba(0,0,0,.25);display:flex;align-items:center;pointer-events:none';
+  document.body.appendChild(el);
+  requestAnimationFrame(()=>{ el.style.opacity=1; el.style.transform='translateX(-50%) translateY(0)'; });
+  setTimeout(()=>{ el.style.opacity=0; setTimeout(()=>el.remove(),250); }, 2200);
+}
+
+$('income').addEventListener('input', calc);
+$('expense').addEventListener('input', calc);
+$('paid').addEventListener('input', calc);
+
+/* 공유 링크로 진입 시 자동 계산 */
+(function(){
+  const p = new URLSearchParams(location.search);
+  if(p.get('mode')==='direct') setMode('direct');
+  const r = p.get('rate');
+  if(r && /^[0-9]+$/.test(r)) setRate(parseInt(r,10));
+  const er = p.get('exceedRate');
+  if(er && /^[0-9]+$/.test(er)) setExceedRate(parseInt(er,10));
+  const d = p.get('deps');
+  if(d && ['1','2','3','4','5'].includes(d)) $('deps').value = d;
+  const e = p.get('expense');
+  if(e && /^[0-9]+$/.test(e)) $('expense').value = parseInt(e,10).toLocaleString('ko-KR');
+  const pd = p.get('paid');
+  if(pd && /^[0-9]+$/.test(pd)) $('paid').value = parseInt(pd,10).toLocaleString('ko-KR');
+  const i = p.get('income');
+  if(i && /^[0-9]+$/.test(i)){ $('income').value = parseInt(i,10).toLocaleString('ko-KR'); calc(); }
+})();
+</script>
+</body>
+</html>
