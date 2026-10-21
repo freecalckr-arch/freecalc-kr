@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>단순경비율 vs 기준경비율, 나는 어느 쪽으로 신고될까 | 프리랜서 계산기</title>
+<meta name="description" content="프리랜서 종합소득세에서 단순경비율과 기준경비율이 어떻게 정해지는지, 같은 수입에서 세금이 얼마나 달라지는지 계산 예시로 정리했습니다.">
+<link rel="canonical" href="https://www.freecalc.kr/library/simple-vs-standard-expense-rate">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="프리랜서 계산기">
+<meta property="og:title" content="단순경비율 vs 기준경비율, 나는 어느 쪽으로 신고될까 | 프리랜서 계산기">
+<meta property="og:description" content="프리랜서 종합소득세에서 단순경비율과 기준경비율이 어떻게 정해지는지, 같은 수입에서 세금이 얼마나 달라지는지 계산 예시로 정리했습니다.">
+<meta property="og:image" content="https://www.freecalc.kr/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://www.freecalc.kr/library/simple-vs-standard-expense-rate">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="단순경비율 vs 기준경비율, 나는 어느 쪽으로 신고될까 | 프리랜서 계산기">
+<meta name="twitter:description" content="프리랜서 종합소득세에서 단순경비율과 기준경비율이 어떻게 정해지는지, 같은 수입에서 세금이 얼마나 달라지는지 계산 예시로 정리했습니다.">
+<meta name="twitter:image" content="https://www.freecalc.kr/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="/common.css">
+<script src="/common.js"></script>
+<style>
+:root{
+  --bg:#FFFFFF; --hover:#F7F7F5;
+  --surface:#FFFFFF;
+  --ink:#191919;
+  --muted:#787774;
+  --line:#EAEAE8;
+  --accent:#191919;
+  --accent-soft:#F1F1EF;
+  --slate:#2B2F36;
+  --shadow:0 1px 2px rgba(0,0,0,.04),0 16px 40px rgba(23,25,28,.07);
+  --r:12px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:"Pretendard Variable",Pretendard,-apple-system,sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.6;font-size:16px;
+}
+.num{font-family:"Space Grotesk","Pretendard Variable",sans-serif;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.wrap{max-width:800px;margin:0 auto;padding:0 20px 90px}
+
+/* ── nav ── */
+nav{display:flex;justify-content:space-between;align-items:center;padding:20px 0}
+.logo{font-weight:800;font-size:19px;letter-spacing:-.02em;display:flex;align-items:center;gap:6px}
+.logo img{height:39px;width:auto;display:block}
+nav .links{display:flex;gap:18px;font-size:14px;color:var(--muted);font-weight:600}
+nav .links a{color:inherit;text-decoration:none}
+.nav-pick{position:relative}
+.nav-pick-btn{
+  font:inherit;font-size:14px;font-weight:600;color:var(--muted);background:none;border:none;
+  cursor:pointer;display:flex;align-items:center;gap:4px;padding:0;
+}
+.nav-pick-btn:hover{color:var(--ink)}
+.nav-pick-btn svg{transition:transform .15s}
+.nav-pick.open .nav-pick-btn{color:var(--ink)}
+.nav-pick.open .nav-pick-btn svg{transform:rotate(180deg)}
+.nav-pick-menu{
+  position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%);min-width:220px;
+  background:#FFFFFF;border:1px solid var(--line);border-radius:14px;
+  box-shadow:0 4px 12px rgba(0,0,0,.06),0 12px 32px rgba(23,25,28,.12);
+  padding:6px;display:none;z-index:200;
+}
+.nav-pick.open .nav-pick-menu{display:block}
+.nav-pick-menu a{
+  display:flex;align-items:center;gap:9px;font-size:14px;font-weight:600;color:var(--ink);
+  text-decoration:none;border-radius:9px;padding:10px 12px;white-space:nowrap;
+}
+.nav-pick-menu a:hover{background:var(--hover)}
+.nav-pick-menu a.current{font-weight:700;background:var(--hover)}
+.nav-pick-menu a .soon{margin-left:auto;font-size:10.5px;font-weight:700;color:var(--faint);background:var(--hover);border-radius:6px;padding:2px 6px}
+.nav-pick-menu a.current .soon{background:#fff}
+
+/* ── 모바일 nav: 햄버거 메뉴 ── */
+.nav-toggle{display:none}
+@media (max-width:640px){
+  nav{position:relative}
+  .nav-toggle{
+    display:flex;align-items:center;justify-content:center;
+    width:38px;height:38px;border:1px solid var(--line);border-radius:10px;
+    background:var(--surface);color:var(--ink);cursor:pointer;flex:none;
+  }
+  nav .links{
+    display:none;position:absolute;top:calc(100% + 8px);left:0;right:0;
+    flex-direction:column;align-items:stretch;gap:2px;
+    background:#FFFFFF;border:1px solid var(--line);border-radius:14px;
+    box-shadow:0 4px 12px rgba(0,0,0,.06),0 12px 32px rgba(23,25,28,.12);
+    padding:8px;z-index:150;
+  }
+  nav .links.open{display:flex}
+  nav .links > a{padding:12px 10px;border-radius:9px}
+  nav .links > a:hover{background:var(--hover)}
+  .nav-pick{width:100%}
+  .nav-pick-btn{width:100%;justify-content:space-between;padding:12px 10px;border-radius:9px}
+  .nav-pick-btn:hover{background:var(--hover)}
+  .nav-pick-menu{
+    position:static;transform:none;box-shadow:none;border:none;padding:0;
+    min-width:0;width:100%;margin-top:2px;background:var(--hover);border-radius:9px;
+  }
+}
+
+
+/* ── hero ── */
+.hero{padding:38px 0 30px}
+.eyebrow{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.13em;color:var(--ink);background:var(--hover);border-radius:999px;padding:6px 13px;margin-bottom:16px;text-transform:none}
+.eyebrow b{color:var(--accent);font-family:"Space Grotesk"}
+h1{font-size:clamp(32px,8vw,48px);font-weight:800;letter-spacing:-.035em;line-height:1.16}
+h1 em{font-style:normal;color:var(--accent);font-family:"Space Grotesk";font-weight:700}
+.hero p{margin-top:14px;color:var(--muted);font-size:16px;max-width:52ch}
+
+/* ── calc ── */
+.calc{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:26px 22px;margin-top:10px}
+.seg{display:flex;background:var(--hover);border-radius:12px;padding:4px;margin-bottom:22px}
+.seg button{
+  flex:1;font:inherit;font-size:14px;font-weight:700;padding:11px 6px;border:none;border-radius:9px;
+  background:transparent;color:var(--muted);cursor:pointer;transition:all .18s ease;
+}
+.seg button[aria-pressed="true"]{background:#FFFFFF;color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.seg button:not([aria-pressed="true"]):hover{color:var(--ink)}
+.guide-box{display:flex;gap:10px;align-items:flex-start;background:#FEF9E7;border-radius:12px;padding:14px 16px;margin-bottom:18px;font-size:13.5px;line-height:1.55;color:#5C5638}
+.guide-box .emo{font-size:16px;line-height:1.45;flex:none}
+.guide-box b{color:#3D3A22}
+label.field{display:block;font-size:13px;font-weight:700;color:var(--muted);margin-bottom:9px}
+.amount{display:flex;align-items:baseline;gap:10px;border-bottom:2px solid var(--ink);padding-bottom:8px;transition:border-color .18s}
+.amount:focus-within{border-color:var(--accent)}
+.amount input{
+  flex:1;border:none;background:transparent;outline:none;min-width:0;
+  font-family:"Space Grotesk","Pretendard Variable",sans-serif;
+  font-size:clamp(30px,8vw,40px);font-weight:700;letter-spacing:-.02em;color:var(--ink);
+  font-variant-numeric:tabular-nums;
+}
+.amount input::placeholder{color:#C9CBC6}
+.amount .won{font-size:18px;font-weight:700;color:var(--muted)}
+.quick{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+.quick button{
+  font:inherit;font-size:13px;font-weight:600;padding:8px 14px;border-radius:999px;cursor:pointer;
+  border:1px solid var(--line);background:var(--surface);color:var(--muted);transition:all .15s;
+}
+.quick button:hover{border-color:var(--ink);color:var(--ink)}
+
+/* ── result ── */
+.result{margin-top:28px;display:none}
+.result.on{display:block}
+.headline{display:flex;justify-content:space-between;align-items:flex-end;gap:10px;flex-wrap:wrap}
+.headline .k{font-size:13px;font-weight:700;color:var(--muted)}
+.big{font-family:"Space Grotesk","Pretendard Variable",sans-serif;font-size:clamp(34px,9vw,46px);font-weight:700;letter-spacing:-.03em;line-height:1.05;font-variant-numeric:tabular-nums}
+.big small{font-size:.5em;font-weight:700;margin-left:2px}
+.chip{
+  display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--accent);
+  background:var(--accent-soft);border-radius:999px;padding:6px 12px;
+  opacity:0;transform:scale(.7);transition:all .25s cubic-bezier(.2,1.6,.4,1);
+}
+.chip.on{opacity:1;transform:scale(1)}
+
+/* flow bar — signature */
+.flow{margin:22px 0 8px}
+.bar{display:flex;height:46px;border-radius:11px;overflow:hidden;background:var(--bg)}
+.bar div{transition:width .55s cubic-bezier(.3,.9,.3,1);min-width:2px}
+.bar .net{background:#1FAE5F}
+.bar .tax{background:#F0A93E}
+.bar .local{background:#4C7CF0}
+.legend{display:flex;gap:16px;margin-top:12px;flex-wrap:wrap;font-size:13px}
+.legend span{display:flex;align-items:center;gap:6px;color:var(--muted);font-weight:600}
+.legend i{width:10px;height:10px;border-radius:3px;display:inline-block}
+.legend .v{color:var(--ink);font-weight:700}
+
+.rows{margin-top:18px;border-top:1px solid var(--line)}
+.row{display:flex;justify-content:space-between;align-items:baseline;padding:12px 2px;border-bottom:1px solid var(--line);font-size:15px}
+.row .k{color:var(--muted);font-weight:600}
+.row .v{font-weight:700}
+.row.minus .v{color:var(--slate)}
+
+.actions{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap;justify-content:center}
+.actions button{display:flex;align-items:center;gap:7px;justify-content:center;
+  font:inherit;font-size:14px;font-weight:700;padding:12px 18px;border-radius:11px;cursor:pointer;transition:all .15s;
+}
+.btn-share{border:none;background:var(--ink);color:#fff}
+.btn-share:hover{background:#000}
+.btn-copy{border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+.btn-copy:hover{border-color:var(--ink)}
+.share-note{font-size:12px;color:var(--muted);margin-top:10px;text-align:center}
+.trust{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px;justify-content:center}
+.trust span{font-size:12px;font-weight:600;color:var(--muted);background:var(--bg);border-radius:7px;padding:5px 10px}
+
+/* ── sections ── */
+section{margin-top:56px}
+h2{font-size:22px;font-weight:800;letter-spacing:-.02em;margin-bottom:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px;margin-bottom:12px}
+.card h3{font-size:16px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:9px}
+.card h3 .hi{font-size:19px;line-height:1}
+.card p{font-size:14.5px;color:var(--muted);line-height:1.75}
+.card p+p{margin-top:10px}
+.card p b{color:var(--ink)}
+.formula{
+  font-family:"Space Grotesk","Pretendard Variable",sans-serif;font-variant-numeric:tabular-nums;
+  background:var(--hover);border-radius:10px;padding:14px 16px;font-size:16.5px;margin:10px 0;
+  font-weight:600;color:var(--ink);width:100%;text-align:center;
+}
+a{color:var(--ink);font-weight:700;text-underline-offset:3px}
+.next{display:grid;gap:10px}
+.next a{
+  display:flex;justify-content:space-between;align-items:center;background:var(--surface);
+  border:1px solid var(--line);border-radius:14px;padding:17px 18px;text-decoration:none;
+  font-weight:700;font-size:15px;transition:all .15s;
+}
+.next a:hover{border-color:var(--ink);transform:translateY(-1px)}
+.next a small{display:block;font-weight:500;font-size:12.5px;color:var(--muted);margin-top:2px}
+.next a::after{content:"→";color:var(--muted);font-weight:700}
+
+details{background:var(--surface);border:1px solid var(--line);border-radius:13px;margin-bottom:10px;overflow:hidden}
+summary{padding:16px 18px;font-weight:700;font-size:15px;cursor:pointer;list-style:none;display:flex;align-items:center;gap:10px}
+summary::after{content:"→";color:var(--muted);font-weight:700;margin-left:auto}
+summary .qi{font-size:17px;line-height:1;flex:none}
+summary::-webkit-details-marker{display:none}
+details p{padding:0 18px 16px 42px;font-size:14.5px;color:var(--muted);line-height:1.75}
+details p+p{margin-top:10px}
+details p b{color:var(--ink)}
+details[open] summary{border-bottom:1px solid var(--line);margin-bottom:12px}
+
+.ad-slot{margin:40px 0;min-height:100px;border:1px dashed var(--line);border-radius:13px;display:grid;place-items:center;color:#B9BCB6;font-size:12px;letter-spacing:.15em}
+
+footer{margin-top:64px;padding-top:24px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+footer nav{padding:0 0 12px;justify-content:flex-start;gap:16px}
+footer nav a{color:var(--muted);text-decoration:none;font-weight:600}
+
+@media (prefers-reduced-motion:reduce){
+  .bar div,.chip,.seg button,.next a{transition:none}
+}
+</style>
+
+
+<style>
+/* 한글이 좁은 flex/grid 레이아웃에서 한 글자씩 쪼개지는 것을 방지 */
+body, nav, .qopts button, .card, .next a, .next, .cmp-table{word-break:keep-all;overflow-wrap:break-word}
+.tl-item.important{background:var(--accent-soft);border-radius:14px;padding:20px 18px;margin:8px 0;border-bottom:none}
+.tl-item.important + .tl-item{border-top:none}
+.tl-star{display:inline-block;font-size:11px;font-weight:700;color:#fff;background:var(--ink);border-radius:999px;padding:3px 10px;margin-left:6px;vertical-align:middle}
+.guide-hero{padding:38px 0 20px}
+.guide-hero .eyebrow{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.13em;color:var(--ink);background:var(--hover);border-radius:999px;padding:6px 13px;margin-bottom:16px}
+.guide-hero p{margin-top:14px;color:var(--muted);font-size:16px;max-width:56ch}
+.timeline{margin-top:30px;border-top:1px solid var(--line)}
+.tl-item{display:flex;gap:18px;padding:20px 2px;border-bottom:1px solid var(--line)}
+.tl-month{flex:none;width:64px;font-family:"Space Grotesk","Pretendard Variable",sans-serif;font-size:20px;font-weight:800;color:var(--ink)}
+.tl-month small{display:block;font-size:11px;font-weight:700;color:var(--muted);font-family:"Pretendard Variable",sans-serif}
+.tl-body b{font-size:15.5px;font-weight:700}
+.tl-body p{margin-top:6px;font-size:14px;color:var(--muted);line-height:1.65}
+.tl-tag{display:inline-block;font-size:11px;font-weight:700;color:var(--accent);background:var(--accent-soft);border-radius:999px;padding:3px 10px;margin-left:6px;vertical-align:middle}
+.qbox{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:28px 24px;margin-top:24px}
+.qbox .qnum{font-size:12px;font-weight:700;color:var(--muted);margin-bottom:8px}
+.qbox h3{font-size:19px;font-weight:800;margin-bottom:18px;letter-spacing:-.01em}
+.qopts{display:grid;gap:10px}
+.qopts button{
+  font:inherit;font-size:15px;font-weight:700;text-align:left;padding:15px 18px;border-radius:12px;cursor:pointer;
+  border:1px solid var(--line);background:var(--surface);color:var(--ink);transition:all .15s;
+}
+.qopts button:hover{border-color:var(--ink);background:var(--hover)}
+.qresult{display:none;margin-top:24px}
+.qresult.on{display:block}
+.qresult .card{border:1px solid var(--line);background:var(--surface);box-shadow:var(--shadow)}
+.qresult .card h3{font-size:18px;font-weight:800;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.qrestart{margin-top:14px;font-size:13.5px;font-weight:700;color:var(--muted);background:none;border:none;cursor:pointer;text-decoration:underline;text-underline-offset:3px;padding:0}
+.cmp-table{width:100%;border-collapse:collapse;margin-top:24px;font-size:14.5px}
+.cmp-table th,.cmp-table td{padding:14px 14px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.cmp-table th{font-size:12.5px;font-weight:700;color:var(--muted);text-transform:none}
+.cmp-table td.k{font-weight:700;color:var(--ink);white-space:nowrap;width:110px}
+.cmp-table tbody tr:hover{background:var(--hover)}
+@media (max-width:640px){
+  .cmp-table{display:block;overflow-x:auto;white-space:nowrap}
+}
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "단순경비율 vs 기준경비율, 나는 어느 쪽으로 신고될까",
+  "url": "https://www.freecalc.kr/library/simple-vs-standard-expense-rate",
+  "description": "프리랜서 종합소득세에서 단순경비율과 기준경비율이 어떻게 정해지는지, 같은 수입에서 세금이 얼마나 달라지는지 계산 예시로 정리했습니다.",
+  "datePublished": "2026-10-21",
+  "dateModified": "2026-10-21",
+  "author": {"@type": "Organization", "name": "프리랜서 계산기"},
+  "publisher": {"@type": "Organization", "name": "프리랜서 계산기", "url": "https://www.freecalc.kr/"},
+  "isPartOf": {"@type": "WebSite", "name": "프리랜서 계산기", "url": "https://www.freecalc.kr/"},
+  "inLanguage": "ko-KR"
+}
+</script>
+</head>
+<body>
+<div class="wrap">
+<div id="site-nav"></div>
+<script src="/nav.js"></script>
+
+
+<style>
+.article-body h2{font-size:20px;font-weight:800;margin:36px 0 14px;letter-spacing:-.01em}
+.article-body h2:first-child{margin-top:0}
+.article-body p{color:var(--muted);font-size:15.5px;line-height:1.8;margin-bottom:14px}
+.article-body ul,.article-body ol{margin:14px 0 18px 0;padding-left:22px;color:var(--muted);font-size:15.5px;line-height:1.85}
+.article-body li{margin-bottom:8px}
+.article-body li b{color:var(--ink)}
+.article-body strong{color:var(--ink)}
+</style>
+
+<div class="guide-hero">
+  <div class="eyebrow">📊 세금 자료</div>
+  <h1>단순경비율 vs <em>기준경비율</em></h1>
+  <p>작년과 수입이 비슷한데 올해 세금이 갑자기 늘었다면 경비율이 바뀌었을 가능성이 커요. 기준과 세금 차이를 예시로 정리했어요.</p>
+</div>
+
+<div class="article-body">
+<h2>경비율이 왜 중요할까요</h2>
+<p>종합소득세는 <b>수입에서 필요경비를 뺀 소득금액</b>에 매겨요. 장부를 쓰지 않는 프리랜서는 실제 경비 대신 국세청이 업종별로 정해둔 <b>경비율</b>로 경비를 계산해요. 이걸 <b>추계신고</b>라고 해요.</p>
+<p>경비율에는 두 가지가 있어요. 수입의 상당 부분을 경비로 인정해주는 <b>단순경비율</b>, 그리고 주요 경비는 증빙으로 따로 입증하고 나머지만 비율로 인정해주는 <b>기준경비율</b>이에요. 어느 쪽이 적용되느냐에 따라 같은 수입에서도 세금이 몇 배씩 차이 나요.</p>
+
+<h2>어느 쪽이 적용되는지는 작년 수입으로 정해져요</h2>
+<p>경비율은 올해 수입이 아니라 <b>직전연도 수입금액</b>을 기준으로 판단해요. 2026년 5월에 2025년 소득을 신고한다면 2024년 수입금액을 보는 거예요.</p>
+<table class="cmp-table">
+  <thead><tr><th>구분</th><th>단순경비율 적용</th><th>기준경비율 적용</th></tr></thead>
+  <tbody>
+    <tr><td class="k">계속사업자</td><td>직전연도 수입이 업종별 기준 미만<br>(서비스업 프리랜서는 보통 2,400만 원)</td><td>직전연도 수입이 기준 이상</td></tr>
+    <tr><td class="k">신규사업자</td><td>올해 수입이 간편장부대상자 기준 미만<br>(서비스업은 7,500만 원)</td><td>올해 수입이 기준 이상</td></tr>
+    <tr><td class="k">예외</td><td colspan="2">변호사·세무사 등 전문직 사업자는 수입과 관계없이 단순경비율을 적용받을 수 없어요.</td></tr>
+  </tbody>
+</table>
+<p>업종에 따라 기준 금액이 다를 수 있어서, 내 업종코드의 기준은 홈택스에서 꼭 확인해보세요. 처음 프리랜서 일을 시작한 해에는 신규사업자 기준이 적용돼서, 수입이 꽤 많아도 단순경비율로 신고할 수 있는 경우가 많아요.</p>
+
+<h2>두 방식은 이렇게 계산해요</h2>
+<div class="formula">단순경비율: 소득금액 = 수입 × (1 − 단순경비율)</div>
+<div class="formula">기준경비율: 소득금액 = 수입 − 주요경비 − (수입 × 기준경비율)</div>
+<p>기준경비율에서 <b>주요경비</b>는 매입비용, 사업장 임차료, 직원 인건비처럼 증빙으로 확인되는 큰 비용이에요. 그런데 디자이너·작가·개발자 같은 인적용역 프리랜서는 이런 비용이 거의 없는 경우가 많아요. 그래서 기준경비율로 바뀌면 소득금액이 크게 늘어나요.</p>
+<p>다만 기준경비율로 계산한 소득금액이 너무 커지지 않도록 상한이 있어요. 단순경비율로 계산한 소득금액에 배율(간편장부대상자 2.8배, 복식부기의무자 3.4배)을 곱한 금액과 비교해서 <b>더 작은 쪽</b>을 써요.</p>
+
+<h2>같은 3,000만 원, 세금은 얼마나 다를까</h2>
+<p>연 수입 3,000만 원, 본인 공제만 있고 주요경비는 없다고 가정해볼게요. 경비율은 <b>단순경비율 64.1%, 기준경비율 21%</b>로 가정했어요. 실제 경비율은 업종코드마다 달라요.</p>
+<table class="cmp-table">
+  <thead><tr><th>항목</th><th>단순경비율</th><th>기준경비율</th></tr></thead>
+  <tbody>
+    <tr><td class="k">인정 경비</td><td>1,923만 원</td><td>630만 원</td></tr>
+    <tr><td class="k">소득금액</td><td>1,077만 원</td><td>2,370만 원</td></tr>
+    <tr><td class="k">과세표준</td><td>927만 원</td><td>2,220만 원</td></tr>
+    <tr><td class="k">결정세액</td><td>약 48만 6천 원</td><td>약 200만 원</td></tr>
+    <tr><td class="k">미리 낸 3%</td><td>90만 원</td><td>90만 원</td></tr>
+    <tr><td class="k">5월 결과</td><td><b>약 41만 원 환급</b></td><td><b>약 110만 원 추가 납부</b></td></tr>
+  </tbody>
+</table>
+<p>결정세액에는 표준세액공제 7만 원을 반영했고, 지방소득세(소득세의 10%)는 따로 붙어요. <b>수입은 똑같은데 결과가 환급에서 추가 납부로 뒤집혀요.</b> 작년 수입이 기준을 넘었는데 올해 수입이 줄었다면, 줄어든 수입에도 기준경비율이 적용되니 특히 조심해야 해요.</p>
+
+<h2>기준경비율 대상이라면 장부를 고민해보세요</h2>
+<p>기준경비율로 추계신고를 하면 세금이 늘어나는 것 말고도 불이익이 하나 더 있어요. 장부를 쓰지 않은 데 대한 <b>무기장가산세(산출세액의 20%)</b>예요. 다만 신규사업자나 직전연도 수입이 4,800만 원 미만인 소규모사업자는 이 가산세가 없어요.</p>
+<ul>
+  <li><b>간편장부 작성:</b> 실제 쓴 경비를 장부에 적고 증빙을 남기면, 경비율 대신 실제 경비로 신고할 수 있어요. 노트북·소프트웨어 구독료·작업실 월세처럼 쓴 돈이 많다면 기준경비율보다 유리할 수 있어요.</li>
+  <li><b>복식부기 기장:</b> 간편장부대상자가 복식부기로 장부를 쓰면 <b>기장세액공제</b>(산출세액의 20%, 최대 100만 원)를 받을 수 있어요.</li>
+  <li><b>단순경비율 대상자도 선택 가능:</b> 실제 경비가 단순경비율보다 많다면 장부를 써서 신고하는 게 유리해요.</li>
+</ul>
+<p>저도 프리랜서 수입이 늘어난 다음 해에 경비율이 바뀐다는 걸 모르고 있다가 예상보다 세금이 많이 나왔어요. 그 뒤로는 연중에 카드 내역과 영수증을 정리해두고, 수입이 기준을 넘을 것 같으면 미리 장부를 쓰고 있어요.</p>
+
+<h2>내 경비율 확인하는 방법</h2>
+<ol>
+  <li><a href="https://www.hometax.go.kr" target="_blank" rel="noopener">홈택스</a>에서 <b>기준·단순경비율(업종코드) 조회</b> 메뉴를 찾아요.</li>
+  <li>귀속연도를 고르고 업종명(예: 디자이너, 저술가, 기타자영업)으로 검색해요.</li>
+  <li>내 업종코드의 단순경비율과 기준경비율을 확인해요. 원천징수영수증에 적힌 업종코드와 같은지도 확인해보세요.</li>
+</ol>
+<p>5월에 국세청이 보내는 종합소득세 신고 안내문에도 내가 어느 경비율 대상인지 적혀 있어요. 확인한 경비율로 대략적인 세금이 얼마나 나올지는 <a href="/tools/income-tax">종합소득세 예상 계산기</a>에서 미리 계산해볼 수 있어요.</p>
+<p>경비율과 기준 금액은 귀속연도마다 바뀔 수 있어요. 최종 기준은 <a href="https://www.nts.go.kr" target="_blank" rel="noopener">국세청</a> 고시를 확인해주세요.</p>
+<p><small>최종 검토일: 2026년 10월 21일 · 2026년 기준</small></p>
+</div>
+<section>
+  <div class="sec-head"><h2>이어서 확인하기</h2></div>
+  <div class="next">
+    <a href="/tools/income-tax"><span>📊 종합소득세 예상 계산기<small>경비율 반영한 예상 세액 확인</small></span></a>
+    <a href="/library/income-tax-hometax-guide"><span>🖥️ 홈택스 종합소득세 신고 따라하기<small>단순경비율로 직접 신고하는 순서</small></span></a>
+  </div>
+</section>
+
+<footer>
+  <nav><a href="/about">소개</a><a href="/contact">문의</a><a href="/privacy">개인정보처리방침</a><a href="/terms">이용약관</a></nav>
+  <p>본 결과는 참고용이며 법적 효력이 없습니다. 공식 기준은 <a href="https://www.nts.go.kr" target="_blank" rel="noopener">국세청</a>에서 확인하세요.<br>© 프리랜서 계산기 · freecalc.kr</p>
+</footer>
+
+</div>
+
+
+</body>
+</html>
