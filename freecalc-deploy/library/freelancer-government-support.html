@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>프리랜서·1인 자영업자 정부 지원금 총정리 (2026) | 프리랜서 계산기</title>
+<meta name="description" content="출산급여, 근로장려금, 실업급여, 국민연금 보험료 지원, 국민내일배움카드, 노란우산공제까지 프리랜서와 1인 자영업자가 받을 수 있는 2026년 정부 지원을 한 번에 정리했습니다.">
+<link rel="canonical" href="https://www.freecalc.kr/library/freelancer-government-support">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="프리랜서 계산기">
+<meta property="og:title" content="프리랜서·1인 자영업자 정부 지원금 총정리 (2026) | 프리랜서 계산기">
+<meta property="og:description" content="출산급여, 근로장려금, 실업급여, 국민연금 보험료 지원, 국민내일배움카드, 노란우산공제까지 프리랜서와 1인 자영업자가 받을 수 있는 2026년 정부 지원을 한 번에 정리했습니다.">
+<meta property="og:image" content="https://www.freecalc.kr/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://www.freecalc.kr/library/freelancer-government-support">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="프리랜서·1인 자영업자 정부 지원금 총정리 (2026) | 프리랜서 계산기">
+<meta name="twitter:description" content="출산급여, 근로장려금, 실업급여, 국민연금 보험료 지원, 국민내일배움카드, 노란우산공제까지 프리랜서와 1인 자영업자가 받을 수 있는 2026년 정부 지원을 한 번에 정리했습니다.">
+<meta name="twitter:image" content="https://www.freecalc.kr/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="/common.css">
+<script src="/common.js"></script>
+<style>
+:root{
+  --bg:#FFFFFF; --hover:#F7F7F5;
+  --surface:#FFFFFF;
+  --ink:#191919;
+  --muted:#787774;
+  --line:#EAEAE8;
+  --accent:#191919;
+  --accent-soft:#F1F1EF;
+  --slate:#2B2F36;
+  --shadow:0 1px 2px rgba(0,0,0,.04),0 16px 40px rgba(23,25,28,.07);
+  --r:12px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:"Pretendard Variable",Pretendard,-apple-system,sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.6;font-size:16px;
+}
+.num{font-family:"Space Grotesk","Pretendard Variable",sans-serif;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.wrap{max-width:800px;margin:0 auto;padding:0 20px 90px}
+
+/* ── nav ── */
+nav{display:flex;justify-content:space-between;align-items:center;padding:20px 0}
+.logo{font-weight:800;font-size:19px;letter-spacing:-.02em;display:flex;align-items:center;gap:6px}
+.logo img{height:39px;width:auto;display:block}
+nav .links{display:flex;gap:18px;font-size:14px;color:var(--muted);font-weight:600}
+nav .links a{color:inherit;text-decoration:none}
+.nav-pick{position:relative}
+.nav-pick-btn{
+  font:inherit;font-size:14px;font-weight:600;color:var(--muted);background:none;border:none;
+  cursor:pointer;display:flex;align-items:center;gap:4px;padding:0;
+}
+.nav-pick-btn:hover{color:var(--ink)}
+.nav-pick-btn svg{transition:transform .15s}
+.nav-pick.open .nav-pick-btn{color:var(--ink)}
+.nav-pick.open .nav-pick-btn svg{transform:rotate(180deg)}
+.nav-pick-menu{
+  position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%);min-width:220px;
+  background:#FFFFFF;border:1px solid var(--line);border-radius:14px;
+  box-shadow:0 4px 12px rgba(0,0,0,.06),0 12px 32px rgba(23,25,28,.12);
+  padding:6px;display:none;z-index:200;
+}
+.nav-pick.open .nav-pick-menu{display:block}
+.nav-pick-menu a{
+  display:flex;align-items:center;gap:9px;font-size:14px;font-weight:600;color:var(--ink);
+  text-decoration:none;border-radius:9px;padding:10px 12px;white-space:nowrap;
+}
+.nav-pick-menu a:hover{background:var(--hover)}
+.nav-pick-menu a.current{font-weight:700;background:var(--hover)}
+.nav-pick-menu a .soon{margin-left:auto;font-size:10.5px;font-weight:700;color:var(--faint);background:var(--hover);border-radius:6px;padding:2px 6px}
+.nav-pick-menu a.current .soon{background:#fff}
+
+/* ── 모바일 nav: 햄버거 메뉴 ── */
+.nav-toggle{display:none}
+@media (max-width:640px){
+  nav{position:relative}
+  .nav-toggle{
+    display:flex;align-items:center;justify-content:center;
+    width:38px;height:38px;border:1px solid var(--line);border-radius:10px;
+    background:var(--surface);color:var(--ink);cursor:pointer;flex:none;
+  }
+  nav .links{
+    display:none;position:absolute;top:calc(100% + 8px);left:0;right:0;
+    flex-direction:column;align-items:stretch;gap:2px;
+    background:#FFFFFF;border:1px solid var(--line);border-radius:14px;
+    box-shadow:0 4px 12px rgba(0,0,0,.06),0 12px 32px rgba(23,25,28,.12);
+    padding:8px;z-index:150;
+  }
+  nav .links.open{display:flex}
+  nav .links > a{padding:12px 10px;border-radius:9px}
+  nav .links > a:hover{background:var(--hover)}
+  .nav-pick{width:100%}
+  .nav-pick-btn{width:100%;justify-content:space-between;padding:12px 10px;border-radius:9px}
+  .nav-pick-btn:hover{background:var(--hover)}
+  .nav-pick-menu{
+    position:static;transform:none;box-shadow:none;border:none;padding:0;
+    min-width:0;width:100%;margin-top:2px;background:var(--hover);border-radius:9px;
+  }
+}
+
+
+/* ── hero ── */
+.hero{padding:38px 0 30px}
+.eyebrow{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.13em;color:var(--ink);background:var(--hover);border-radius:999px;padding:6px 13px;margin-bottom:16px;text-transform:none}
+.eyebrow b{color:var(--accent);font-family:"Space Grotesk"}
+h1{font-size:clamp(32px,8vw,48px);font-weight:800;letter-spacing:-.035em;line-height:1.16}
+h1 em{font-style:normal;color:var(--accent);font-family:"Space Grotesk";font-weight:700}
+.hero p{margin-top:14px;color:var(--muted);font-size:16px;max-width:52ch}
+
+/* ── calc ── */
+.calc{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:26px 22px;margin-top:10px}
+.seg{display:flex;background:var(--hover);border-radius:12px;padding:4px;margin-bottom:22px}
+.seg button{
+  flex:1;font:inherit;font-size:14px;font-weight:700;padding:11px 6px;border:none;border-radius:9px;
+  background:transparent;color:var(--muted);cursor:pointer;transition:all .18s ease;
+}
+.seg button[aria-pressed="true"]{background:#FFFFFF;color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.seg button:not([aria-pressed="true"]):hover{color:var(--ink)}
+.guide-box{display:flex;gap:10px;align-items:flex-start;background:#FEF9E7;border-radius:12px;padding:14px 16px;margin-bottom:18px;font-size:13.5px;line-height:1.55;color:#5C5638}
+.guide-box .emo{font-size:16px;line-height:1.45;flex:none}
+.guide-box b{color:#3D3A22}
+label.field{display:block;font-size:13px;font-weight:700;color:var(--muted);margin-bottom:9px}
+.amount{display:flex;align-items:baseline;gap:10px;border-bottom:2px solid var(--ink);padding-bottom:8px;transition:border-color .18s}
+.amount:focus-within{border-color:var(--accent)}
+.amount input{
+  flex:1;border:none;background:transparent;outline:none;min-width:0;
+  font-family:"Space Grotesk","Pretendard Variable",sans-serif;
+  font-size:clamp(30px,8vw,40px);font-weight:700;letter-spacing:-.02em;color:var(--ink);
+  font-variant-numeric:tabular-nums;
+}
+.amount input::placeholder{color:#C9CBC6}
+.amount .won{font-size:18px;font-weight:700;color:var(--muted)}
+.quick{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+.quick button{
+  font:inherit;font-size:13px;font-weight:600;padding:8px 14px;border-radius:999px;cursor:pointer;
+  border:1px solid var(--line);background:var(--surface);color:var(--muted);transition:all .15s;
+}
+.quick button:hover{border-color:var(--ink);color:var(--ink)}
+
+/* ── result ── */
+.result{margin-top:28px;display:none}
+.result.on{display:block}
+.headline{display:flex;justify-content:space-between;align-items:flex-end;gap:10px;flex-wrap:wrap}
+.headline .k{font-size:13px;font-weight:700;color:var(--muted)}
+.big{font-family:"Space Grotesk","Pretendard Variable",sans-serif;font-size:clamp(34px,9vw,46px);font-weight:700;letter-spacing:-.03em;line-height:1.05;font-variant-numeric:tabular-nums}
+.big small{font-size:.5em;font-weight:700;margin-left:2px}
+.chip{
+  display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--accent);
+  background:var(--accent-soft);border-radius:999px;padding:6px 12px;
+  opacity:0;transform:scale(.7);transition:all .25s cubic-bezier(.2,1.6,.4,1);
+}
+.chip.on{opacity:1;transform:scale(1)}
+
+/* flow bar — signature */
+.flow{margin:22px 0 8px}
+.bar{display:flex;height:46px;border-radius:11px;overflow:hidden;background:var(--bg)}
+.bar div{transition:width .55s cubic-bezier(.3,.9,.3,1);min-width:2px}
+.bar .net{background:#1FAE5F}
+.bar .tax{background:#F0A93E}
+.bar .local{background:#4C7CF0}
+.legend{display:flex;gap:16px;margin-top:12px;flex-wrap:wrap;font-size:13px}
+.legend span{display:flex;align-items:center;gap:6px;color:var(--muted);font-weight:600}
+.legend i{width:10px;height:10px;border-radius:3px;display:inline-block}
+.legend .v{color:var(--ink);font-weight:700}
+
+.rows{margin-top:18px;border-top:1px solid var(--line)}
+.row{display:flex;justify-content:space-between;align-items:baseline;padding:12px 2px;border-bottom:1px solid var(--line);font-size:15px}
+.row .k{color:var(--muted);font-weight:600}
+.row .v{font-weight:700}
+.row.minus .v{color:var(--slate)}
+
+.actions{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap;justify-content:center}
+.actions button{display:flex;align-items:center;gap:7px;justify-content:center;
+  font:inherit;font-size:14px;font-weight:700;padding:12px 18px;border-radius:11px;cursor:pointer;transition:all .15s;
+}
+.btn-share{border:none;background:var(--ink);color:#fff}
+.btn-share:hover{background:#000}
+.btn-copy{border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+.btn-copy:hover{border-color:var(--ink)}
+.share-note{font-size:12px;color:var(--muted);margin-top:10px;text-align:center}
+.trust{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px;justify-content:center}
+.trust span{font-size:12px;font-weight:600;color:var(--muted);background:var(--bg);border-radius:7px;padding:5px 10px}
+
+/* ── sections ── */
+section{margin-top:56px}
+h2{font-size:22px;font-weight:800;letter-spacing:-.02em;margin-bottom:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px;margin-bottom:12px}
+.card h3{font-size:16px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:9px}
+.card h3 .hi{font-size:19px;line-height:1}
+.card p{font-size:14.5px;color:var(--muted);line-height:1.75}
+.card p+p{margin-top:10px}
+.card p b{color:var(--ink)}
+.formula{
+  font-family:"Space Grotesk","Pretendard Variable",sans-serif;font-variant-numeric:tabular-nums;
+  background:var(--hover);border-radius:10px;padding:14px 16px;font-size:16.5px;margin:10px 0;
+  font-weight:600;color:var(--ink);width:100%;text-align:center;
+}
+a{color:var(--ink);font-weight:700;text-underline-offset:3px}
+.next{display:grid;gap:10px}
+.next a{
+  display:flex;justify-content:space-between;align-items:center;background:var(--surface);
+  border:1px solid var(--line);border-radius:14px;padding:17px 18px;text-decoration:none;
+  font-weight:700;font-size:15px;transition:all .15s;
+}
+.next a:hover{border-color:var(--ink);transform:translateY(-1px)}
+.next a small{display:block;font-weight:500;font-size:12.5px;color:var(--muted);margin-top:2px}
+.next a::after{content:"→";color:var(--muted);font-weight:700}
+
+details{background:var(--surface);border:1px solid var(--line);border-radius:13px;margin-bottom:10px;overflow:hidden}
+summary{padding:16px 18px;font-weight:700;font-size:15px;cursor:pointer;list-style:none;display:flex;align-items:center;gap:10px}
+summary::after{content:"→";color:var(--muted);font-weight:700;margin-left:auto}
+summary .qi{font-size:17px;line-height:1;flex:none}
+summary::-webkit-details-marker{display:none}
+details p{padding:0 18px 16px 42px;font-size:14.5px;color:var(--muted);line-height:1.75}
+details p+p{margin-top:10px}
+details p b{color:var(--ink)}
+details[open] summary{border-bottom:1px solid var(--line);margin-bottom:12px}
+
+.ad-slot{margin:40px 0;min-height:100px;border:1px dashed var(--line);border-radius:13px;display:grid;place-items:center;color:#B9BCB6;font-size:12px;letter-spacing:.15em}
+
+footer{margin-top:64px;padding-top:24px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+footer nav{padding:0 0 12px;justify-content:flex-start;gap:16px}
+footer nav a{color:var(--muted);text-decoration:none;font-weight:600}
+
+@media (prefers-reduced-motion:reduce){
+  .bar div,.chip,.seg button,.next a{transition:none}
+}
+</style>
+
+
+<style>
+/* 한글이 좁은 flex/grid 레이아웃에서 한 글자씩 쪼개지는 것을 방지 */
+body, nav, .qopts button, .card, .next a, .next, .cmp-table{word-break:keep-all;overflow-wrap:break-word}
+.tl-item.important{background:var(--accent-soft);border-radius:14px;padding:20px 18px;margin:8px 0;border-bottom:none}
+.tl-item.important + .tl-item{border-top:none}
+.tl-star{display:inline-block;font-size:11px;font-weight:700;color:#fff;background:var(--ink);border-radius:999px;padding:3px 10px;margin-left:6px;vertical-align:middle}
+.guide-hero{padding:38px 0 20px}
+.guide-hero .eyebrow{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.13em;color:var(--ink);background:var(--hover);border-radius:999px;padding:6px 13px;margin-bottom:16px}
+.guide-hero p{margin-top:14px;color:var(--muted);font-size:16px;max-width:56ch}
+.timeline{margin-top:30px;border-top:1px solid var(--line)}
+.tl-item{display:flex;gap:18px;padding:20px 2px;border-bottom:1px solid var(--line)}
+.tl-month{flex:none;width:64px;font-family:"Space Grotesk","Pretendard Variable",sans-serif;font-size:20px;font-weight:800;color:var(--ink)}
+.tl-month small{display:block;font-size:11px;font-weight:700;color:var(--muted);font-family:"Pretendard Variable",sans-serif}
+.tl-body b{font-size:15.5px;font-weight:700}
+.tl-body p{margin-top:6px;font-size:14px;color:var(--muted);line-height:1.65}
+.tl-tag{display:inline-block;font-size:11px;font-weight:700;color:var(--accent);background:var(--accent-soft);border-radius:999px;padding:3px 10px;margin-left:6px;vertical-align:middle}
+.qbox{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:28px 24px;margin-top:24px}
+.qbox .qnum{font-size:12px;font-weight:700;color:var(--muted);margin-bottom:8px}
+.qbox h3{font-size:19px;font-weight:800;margin-bottom:18px;letter-spacing:-.01em}
+.qopts{display:grid;gap:10px}
+.qopts button{
+  font:inherit;font-size:15px;font-weight:700;text-align:left;padding:15px 18px;border-radius:12px;cursor:pointer;
+  border:1px solid var(--line);background:var(--surface);color:var(--ink);transition:all .15s;
+}
+.qopts button:hover{border-color:var(--ink);background:var(--hover)}
+.qresult{display:none;margin-top:24px}
+.qresult.on{display:block}
+.qresult .card{border:1px solid var(--line);background:var(--surface);box-shadow:var(--shadow)}
+.qresult .card h3{font-size:18px;font-weight:800;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.qrestart{margin-top:14px;font-size:13.5px;font-weight:700;color:var(--muted);background:none;border:none;cursor:pointer;text-decoration:underline;text-underline-offset:3px;padding:0}
+.cmp-table{width:100%;border-collapse:collapse;margin-top:24px;font-size:14.5px}
+.cmp-table th,.cmp-table td{padding:14px 14px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.cmp-table th{font-size:12.5px;font-weight:700;color:var(--muted);text-transform:none}
+.cmp-table td.k{font-weight:700;color:var(--ink);white-space:nowrap;width:110px}
+.cmp-table tbody tr:hover{background:var(--hover)}
+@media (max-width:640px){
+  .cmp-table{display:block;overflow-x:auto;white-space:nowrap}
+}
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "프리랜서·1인 자영업자 정부 지원금 총정리 (2026)",
+  "url": "https://www.freecalc.kr/library/freelancer-government-support",
+  "description": "출산급여, 근로장려금, 실업급여, 국민연금 보험료 지원, 국민내일배움카드, 노란우산공제까지 프리랜서와 1인 자영업자가 받을 수 있는 2026년 정부 지원을 한 번에 정리했습니다.",
+  "datePublished": "2026-10-21",
+  "dateModified": "2026-10-21",
+  "author": {"@type": "Organization", "name": "프리랜서 계산기"},
+  "publisher": {"@type": "Organization", "name": "프리랜서 계산기", "url": "https://www.freecalc.kr/"},
+  "isPartOf": {"@type": "WebSite", "name": "프리랜서 계산기", "url": "https://www.freecalc.kr/"},
+  "inLanguage": "ko-KR"
+}
+</script>
+</head>
+<body>
+<div class="wrap">
+<div id="site-nav"></div>
+<script src="/nav.js"></script>
+
+
+<style>
+.article-body h2{font-size:20px;font-weight:800;margin:36px 0 14px;letter-spacing:-.01em}
+.article-body h2:first-child{margin-top:0}
+.article-body p{color:var(--muted);font-size:15.5px;line-height:1.8;margin-bottom:14px}
+.article-body ul,.article-body ol{margin:14px 0 18px 0;padding-left:22px;color:var(--muted);font-size:15.5px;line-height:1.85}
+.article-body li{margin-bottom:8px}
+.article-body li b{color:var(--ink)}
+.article-body strong{color:var(--ink)}
+</style>
+
+<div class="guide-hero">
+  <div class="eyebrow">🎁 2026 정부정책</div>
+  <h1>프리랜서 <em>정부 지원금</em> 총정리</h1>
+  <p>회사 밖에서 일하면 받을 수 있는 지원이 없을 것 같지만, 찾아보면 꽤 많아요. 프리랜서와 1인 자영업자가 받을 수 있는 지원을 상황별로 모았어요.</p>
+</div>
+
+<div class="article-body">
+<h2>한눈에 보기</h2>
+<table class="cmp-table">
+  <thead><tr><th>지원</th><th>누가</th><th>얼마나</th></tr></thead>
+  <tbody>
+    <tr><td class="k">출산급여</td><td>고용보험 없는 출산 여성 프리랜서·1인 사업자</td><td>150만 원</td></tr>
+    <tr><td class="k">근로장려금</td><td>소득·재산이 기준 이하인 가구 (사업소득 포함)</td><td>최대 165만~330만 원</td></tr>
+    <tr><td class="k">자녀장려금</td><td>18세 미만 자녀가 있는 저소득 가구</td><td>자녀 1인당 최대 100만 원</td></tr>
+    <tr><td class="k">국민연금 보험료 지원</td><td>소득이 적은 지역가입자</td><td>보험료의 절반 (기간 제한)</td></tr>
+    <tr><td class="k">고용보험료 지원</td><td>자영업자 고용보험에 가입한 소상공인</td><td>보험료의 50~80%, 최대 5년</td></tr>
+    <tr><td class="k">국민내일배움카드</td><td>프리랜서·자영업자 포함 대부분의 국민</td><td>5년간 훈련비 300만~500만 원</td></tr>
+  </tbody>
+</table>
+<p>금액과 기준은 2026년 기준이고 해마다 바뀔 수 있어요. 각 항목 링크에서 자세한 조건을 확인해보세요.</p>
+
+<h2>소득이 적을 때</h2>
+<p><b>근로장려금·자녀장려금</b>은 이름과 달리 3.3% 프리랜서 같은 사업소득자도 받을 수 있어요. 단독가구는 총소득 2,200만 원 미만, 홑벌이 3,200만 원 미만, 맞벌이 4,400만 원 미만이면 대상이 될 수 있고, 재산은 2억 4천만 원 미만이어야 해요. 프리랜서는 5월 종합소득세 신고 때 함께 신청해요. 자세한 내용은 <a href="/library/freelancer-eitc">프리랜서 근로장려금 정리</a>에 있어요.</p>
+<p><b>국민연금 지역가입자 보험료 지원</b>도 있어요. 2026년부터는 월 소득 80만 원 미만인 지역가입자까지 보험료 절반을 지원받을 수 있도록 확대됐어요. 소득이 아예 없다면 납부예외를 신청하는 방법도 있어요. <a href="/library/freelancer-national-pension">프리랜서 국민연금 정리</a>를 참고해보세요.</p>
+
+<h2>아이를 낳을 때</h2>
+<p>고용보험이 없는 프리랜서와 1인 사업자도 <b>고용보험 미적용자 출산급여 150만 원</b>을 받을 수 있어요. 출산일부터 1년 안에 고용24에서 신청하고, 2026년 2월부터는 국세청에 신고된 소득으로 소득활동을 확인해요. 여기에 첫만남이용권, 부모급여, 아동수당은 고용 형태와 관계없이 받을 수 있어요. 자세한 내용은 <a href="/library/freelancer-maternity-benefit">프리랜서 출산급여 정리</a>에 있어요.</p>
+
+<h2>일이 끊길 때를 대비할 때</h2>
+<p>일반 3.3% 프리랜서는 실업급여가 없어요. 하지만 예술인이나 정해진 직종의 노무제공자라면 고용보험이 적용되고, 사업자등록을 한 1인 자영업자는 <b>자영업자 고용보험</b>에 임의로 가입할 수 있어요. 소상공인은 이 보험료의 50~80%를 최대 5년간 돌려받을 수 있어요. 자세한 내용은 <a href="/library/freelancer-unemployment-benefit">프리랜서 실업급여 정리</a>에 있어요.</p>
+<p><b>노란우산공제</b>도 함께 볼 만해요. 폐업하거나 노령이 되면 모아둔 돈을 공제금으로 받을 수 있고, 납입액은 종합소득세에서 연 최대 600만 원까지 소득공제돼요. 일부 지자체는 신규 가입자에게 1년 동안 월 납입액 일부를 장려금으로 더해줘요.</p>
+
+<h2>새 기술을 배우고 싶을 때</h2>
+<p><b>국민내일배움카드</b>는 직장인뿐 아니라 프리랜서와 자영업자도 발급받을 수 있어요. 5년 동안 훈련비를 300만 원(일부 대상은 최대 500만 원)까지 지원받아 디자인 툴, 영상 편집, 개발, 마케팅 같은 과정을 들을 수 있어요. 과정에 따라 자부담 비율이 다르고, 고용24에서 신청해요.</p>
+<p>저도 프리랜서로 일하면서 새 툴을 배울 때 내일배움카드 과정을 찾아봤는데, 실무 과정이 생각보다 많았어요. 일이 뜸한 시기에 미리 들어두면 다음 일을 받을 때 도움이 돼요.</p>
+
+<h2>세금에서 받는 혜택도 지원이에요</h2>
+<ul>
+  <li><b>종합소득세 환급:</b> 미리 낸 3.3%가 실제 세금보다 많으면 5월에 돌려받아요. 신고를 안 했다면 5년 안에 받을 수 있어요. <a href="/library/late-income-tax-filing">기한 후 신고 정리</a></li>
+  <li><b>공제:</b> 국민연금, 노란우산, 연금저축을 챙기면 세금이 크게 줄어요. <a href="/library/freelancer-deductions">프리랜서 공제 정리</a></li>
+  <li><b>창업 세액감면:</b> 사업자등록을 하는 경우 나이·업종·지역에 따라 종합소득세를 감면받을 수 있어요.</li>
+</ul>
+
+<h2>놓치지 않으려면 이것만 챙기세요</h2>
+<ul>
+  <li><b>세금 신고를 꼭 하세요:</b> 출산급여, 근로장려금, 국민연금 지원 대부분이 국세청에 신고된 소득을 기준으로 판단해요. 5월 신고를 안 하면 받을 수 있는 지원도 놓칠 수 있어요.</li>
+  <li><b>신청 기한을 확인하세요:</b> 출산급여는 출산일부터 1년, 근로장려금은 5월(기한 후는 11월 말)까지예요.</li>
+</ul>
+
+<h2>나에게 맞는 지원 찾는 법</h2>
+<ol>
+  <li><b>정부24 혜택 알리미(보조금24):</b> 본인 인증을 하면 받을 수 있는 중앙정부·지자체 지원을 한 번에 조회해줘요.</li>
+  <li><b>복지로:</b> 출산·육아·저소득 지원을 모의계산하고 신청할 수 있어요.</li>
+  <li><b>고용24:</b> 출산급여, 고용보험, 내일배움카드를 신청해요.</li>
+  <li><b>홈택스:</b> 근로·자녀장려금과 세금 환급을 확인해요.</li>
+</ol>
+<p>지원 제도는 해마다 대상과 금액이 바뀌어요. 신청 전에는 각 기관의 최신 안내를 꼭 확인해주세요. 세금 쪽 예상 금액은 <a href="/tools/income-tax">종합소득세 예상 계산기</a>로 먼저 확인해볼 수 있어요.</p>
+<p><small>최종 검토일: 2026년 10월 21일 · 2026년 기준</small></p>
+</div>
+<section>
+  <div class="sec-head"><h2>이어서 확인하기</h2></div>
+  <div class="next">
+    <a href="/library/freelancer-eitc"><span>💰 프리랜서 근로장려금<small>최대 330만 원, 조건 확인하기</small></span></a>
+    <a href="/library/freelancer-maternity-benefit"><span>👶 프리랜서 출산급여 150만 원<small>고용보험 없어도 받는 법</small></span></a>
+  </div>
+</section>
+
+<footer>
+  <nav><a href="/about">소개</a><a href="/contact">문의</a><a href="/privacy">개인정보처리방침</a><a href="/terms">이용약관</a></nav>
+  <p>본 결과는 참고용이며 법적 효력이 없습니다. 공식 기준은 <a href="https://www.nts.go.kr" target="_blank" rel="noopener">국세청</a>에서 확인하세요.<br>© 프리랜서 계산기 · freecalc.kr</p>
+</footer>
+
+</div>
+
+
+</body>
+</html>
