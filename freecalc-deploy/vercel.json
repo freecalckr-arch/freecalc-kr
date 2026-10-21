@@ -1,4 +1,11 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/take-home", "destination": "/tools/take-home", "permanent": true },
+    { "source": "/income-tax", "destination": "/tools/income-tax", "permanent": true },
+    { "source": "/vat-quote", "destination": "/tools/vat-quote", "permanent": true },
+    { "source": "/vat-refund", "destination": "/tools/vat-refund", "permanent": true },
+    { "source": "/withholding-33", "destination": "/tools/withholding-33", "permanent": true }
+  ]
 }
