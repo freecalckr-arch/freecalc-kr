@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>견적서에 "VAT 별도"라고 안 쓰면 생기는 일 | 프리랜서 계산기</title>
+<meta name="description" content="사업자등록을 한 프리랜서가 견적서에 부가세 포함·별도를 적지 않았을 때 생기는 손해와, 견적서·계약서에 바로 쓸 수 있는 안내 문구를 정리했습니다.">
+<link rel="canonical" href="https://www.freecalc.kr/library/quote-vat-separate">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="프리랜서 계산기">
+<meta property="og:title" content="견적서에 &quot;VAT 별도&quot;라고 안 쓰면 생기는 일 | 프리랜서 계산기">
+<meta property="og:description" content="사업자등록을 한 프리랜서가 견적서에 부가세 포함·별도를 적지 않았을 때 생기는 손해와, 견적서·계약서에 바로 쓸 수 있는 안내 문구를 정리했습니다.">
+<meta property="og:image" content="https://www.freecalc.kr/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://www.freecalc.kr/library/quote-vat-separate">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="견적서에 &quot;VAT 별도&quot;라고 안 쓰면 생기는 일 | 프리랜서 계산기">
+<meta name="twitter:description" content="사업자등록을 한 프리랜서가 견적서에 부가세 포함·별도를 적지 않았을 때 생기는 손해와, 견적서·계약서에 바로 쓸 수 있는 안내 문구를 정리했습니다.">
+<meta name="twitter:image" content="https://www.freecalc.kr/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="/common.css">
+<script src="/common.js"></script>
+<style>
+:root{
+  --bg:#FFFFFF; --hover:#F7F7F5;
+  --surface:#FFFFFF;
+  --ink:#191919;
+  --muted:#787774;
+  --line:#EAEAE8;
+  --accent:#191919;
+  --accent-soft:#F1F1EF;
+  --slate:#2B2F36;
+  --shadow:0 1px 2px rgba(0,0,0,.04),0 16px 40px rgba(23,25,28,.07);
+  --r:12px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:"Pretendard Variable",Pretendard,-apple-system,sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.6;font-size:16px;
+}
+.num{font-family:"Space Grotesk","Pretendard Variable",sans-serif;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.wrap{max-width:800px;margin:0 auto;padding:0 20px 90px}
+
+/* ── nav ── */
+nav{display:flex;justify-content:space-between;align-items:center;padding:20px 0}
+.logo{font-weight:800;font-size:19px;letter-spacing:-.02em;display:flex;align-items:center;gap:6px}
+.logo img{height:39px;width:auto;display:block}
+nav .links{display:flex;gap:18px;font-size:14px;color:var(--muted);font-weight:600}
+nav .links a{color:inherit;text-decoration:none}
+.nav-pick{position:relative}
+.nav-pick-btn{
+  font:inherit;font-size:14px;font-weight:600;color:var(--muted);background:none;border:none;
+  cursor:pointer;display:flex;align-items:center;gap:4px;padding:0;
+}
+.nav-pick-btn:hover{color:var(--ink)}
+.nav-pick-btn svg{transition:transform .15s}
+.nav-pick.open .nav-pick-btn{color:var(--ink)}
+.nav-pick.open .nav-pick-btn svg{transform:rotate(180deg)}
+.nav-pick-menu{
+  position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%);min-width:220px;
+  background:#FFFFFF;border:1px solid var(--line);border-radius:14px;
+  box-shadow:0 4px 12px rgba(0,0,0,.06),0 12px 32px rgba(23,25,28,.12);
+  padding:6px;display:none;z-index:200;
+}
+.nav-pick.open .nav-pick-menu{display:block}
+.nav-pick-menu a{
+  display:flex;align-items:center;gap:9px;font-size:14px;font-weight:600;color:var(--ink);
+  text-decoration:none;border-radius:9px;padding:10px 12px;white-space:nowrap;
+}
+.nav-pick-menu a:hover{background:var(--hover)}
+.nav-pick-menu a.current{font-weight:700;background:var(--hover)}
+.nav-pick-menu a .soon{margin-left:auto;font-size:10.5px;font-weight:700;color:var(--faint);background:var(--hover);border-radius:6px;padding:2px 6px}
+.nav-pick-menu a.current .soon{background:#fff}
+
+/* ── 모바일 nav: 햄버거 메뉴 ── */
+.nav-toggle{display:none}
+@media (max-width:640px){
+  nav{position:relative}
+  .nav-toggle{
+    display:flex;align-items:center;justify-content:center;
+    width:38px;height:38px;border:1px solid var(--line);border-radius:10px;
+    background:var(--surface);color:var(--ink);cursor:pointer;flex:none;
+  }
+  nav .links{
+    display:none;position:absolute;top:calc(100% + 8px);left:0;right:0;
+    flex-direction:column;align-items:stretch;gap:2px;
+    background:#FFFFFF;border:1px solid var(--line);border-radius:14px;
+    box-shadow:0 4px 12px rgba(0,0,0,.06),0 12px 32px rgba(23,25,28,.12);
+    padding:8px;z-index:150;
+  }
+  nav .links.open{display:flex}
+  nav .links > a{padding:12px 10px;border-radius:9px}
+  nav .links > a:hover{background:var(--hover)}
+  .nav-pick{width:100%}
+  .nav-pick-btn{width:100%;justify-content:space-between;padding:12px 10px;border-radius:9px}
+  .nav-pick-btn:hover{background:var(--hover)}
+  .nav-pick-menu{
+    position:static;transform:none;box-shadow:none;border:none;padding:0;
+    min-width:0;width:100%;margin-top:2px;background:var(--hover);border-radius:9px;
+  }
+}
+
+
+/* ── hero ── */
+.hero{padding:38px 0 30px}
+.eyebrow{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.13em;color:var(--ink);background:var(--hover);border-radius:999px;padding:6px 13px;margin-bottom:16px;text-transform:none}
+.eyebrow b{color:var(--accent);font-family:"Space Grotesk"}
+h1{font-size:clamp(32px,8vw,48px);font-weight:800;letter-spacing:-.035em;line-height:1.16}
+h1 em{font-style:normal;color:var(--accent);font-family:"Space Grotesk";font-weight:700}
+.hero p{margin-top:14px;color:var(--muted);font-size:16px;max-width:52ch}
+
+/* ── calc ── */
+.calc{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:26px 22px;margin-top:10px}
+.seg{display:flex;background:var(--hover);border-radius:12px;padding:4px;margin-bottom:22px}
+.seg button{
+  flex:1;font:inherit;font-size:14px;font-weight:700;padding:11px 6px;border:none;border-radius:9px;
+  background:transparent;color:var(--muted);cursor:pointer;transition:all .18s ease;
+}
+.seg button[aria-pressed="true"]{background:#FFFFFF;color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.seg button:not([aria-pressed="true"]):hover{color:var(--ink)}
+.guide-box{display:flex;gap:10px;align-items:flex-start;background:#FEF9E7;border-radius:12px;padding:14px 16px;margin-bottom:18px;font-size:13.5px;line-height:1.55;color:#5C5638}
+.guide-box .emo{font-size:16px;line-height:1.45;flex:none}
+.guide-box b{color:#3D3A22}
+label.field{display:block;font-size:13px;font-weight:700;color:var(--muted);margin-bottom:9px}
+.amount{display:flex;align-items:baseline;gap:10px;border-bottom:2px solid var(--ink);padding-bottom:8px;transition:border-color .18s}
+.amount:focus-within{border-color:var(--accent)}
+.amount input{
+  flex:1;border:none;background:transparent;outline:none;min-width:0;
+  font-family:"Space Grotesk","Pretendard Variable",sans-serif;
+  font-size:clamp(30px,8vw,40px);font-weight:700;letter-spacing:-.02em;color:var(--ink);
+  font-variant-numeric:tabular-nums;
+}
+.amount input::placeholder{color:#C9CBC6}
+.amount .won{font-size:18px;font-weight:700;color:var(--muted)}
+.quick{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+.quick button{
+  font:inherit;font-size:13px;font-weight:600;padding:8px 14px;border-radius:999px;cursor:pointer;
+  border:1px solid var(--line);background:var(--surface);color:var(--muted);transition:all .15s;
+}
+.quick button:hover{border-color:var(--ink);color:var(--ink)}
+
+/* ── result ── */
+.result{margin-top:28px;display:none}
+.result.on{display:block}
+.headline{display:flex;justify-content:space-between;align-items:flex-end;gap:10px;flex-wrap:wrap}
+.headline .k{font-size:13px;font-weight:700;color:var(--muted)}
+.big{font-family:"Space Grotesk","Pretendard Variable",sans-serif;font-size:clamp(34px,9vw,46px);font-weight:700;letter-spacing:-.03em;line-height:1.05;font-variant-numeric:tabular-nums}
+.big small{font-size:.5em;font-weight:700;margin-left:2px}
+.chip{
+  display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--accent);
+  background:var(--accent-soft);border-radius:999px;padding:6px 12px;
+  opacity:0;transform:scale(.7);transition:all .25s cubic-bezier(.2,1.6,.4,1);
+}
+.chip.on{opacity:1;transform:scale(1)}
+
+/* flow bar — signature */
+.flow{margin:22px 0 8px}
+.bar{display:flex;height:46px;border-radius:11px;overflow:hidden;background:var(--bg)}
+.bar div{transition:width .55s cubic-bezier(.3,.9,.3,1);min-width:2px}
+.bar .net{background:#1FAE5F}
+.bar .tax{background:#F0A93E}
+.bar .local{background:#4C7CF0}
+.legend{display:flex;gap:16px;margin-top:12px;flex-wrap:wrap;font-size:13px}
+.legend span{display:flex;align-items:center;gap:6px;color:var(--muted);font-weight:600}
+.legend i{width:10px;height:10px;border-radius:3px;display:inline-block}
+.legend .v{color:var(--ink);font-weight:700}
+
+.rows{margin-top:18px;border-top:1px solid var(--line)}
+.row{display:flex;justify-content:space-between;align-items:baseline;padding:12px 2px;border-bottom:1px solid var(--line);font-size:15px}
+.row .k{color:var(--muted);font-weight:600}
+.row .v{font-weight:700}
+.row.minus .v{color:var(--slate)}
+
+.actions{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap;justify-content:center}
+.actions button{display:flex;align-items:center;gap:7px;justify-content:center;
+  font:inherit;font-size:14px;font-weight:700;padding:12px 18px;border-radius:11px;cursor:pointer;transition:all .15s;
+}
+.btn-share{border:none;background:var(--ink);color:#fff}
+.btn-share:hover{background:#000}
+.btn-copy{border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+.btn-copy:hover{border-color:var(--ink)}
+.share-note{font-size:12px;color:var(--muted);margin-top:10px;text-align:center}
+.trust{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px;justify-content:center}
+.trust span{font-size:12px;font-weight:600;color:var(--muted);background:var(--bg);border-radius:7px;padding:5px 10px}
+
+/* ── sections ── */
+section{margin-top:56px}
+h2{font-size:22px;font-weight:800;letter-spacing:-.02em;margin-bottom:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px;margin-bottom:12px}
+.card h3{font-size:16px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:9px}
+.card h3 .hi{font-size:19px;line-height:1}
+.card p{font-size:14.5px;color:var(--muted);line-height:1.75}
+.card p+p{margin-top:10px}
+.card p b{color:var(--ink)}
+.formula{
+  font-family:"Space Grotesk","Pretendard Variable",sans-serif;font-variant-numeric:tabular-nums;
+  background:var(--hover);border-radius:10px;padding:14px 16px;font-size:16.5px;margin:10px 0;
+  font-weight:600;color:var(--ink);width:100%;text-align:center;
+}
+a{color:var(--ink);font-weight:700;text-underline-offset:3px}
+.next{display:grid;gap:10px}
+.next a{
+  display:flex;justify-content:space-between;align-items:center;background:var(--surface);
+  border:1px solid var(--line);border-radius:14px;padding:17px 18px;text-decoration:none;
+  font-weight:700;font-size:15px;transition:all .15s;
+}
+.next a:hover{border-color:var(--ink);transform:translateY(-1px)}
+.next a small{display:block;font-weight:500;font-size:12.5px;color:var(--muted);margin-top:2px}
+.next a::after{content:"→";color:var(--muted);font-weight:700}
+
+details{background:var(--surface);border:1px solid var(--line);border-radius:13px;margin-bottom:10px;overflow:hidden}
+summary{padding:16px 18px;font-weight:700;font-size:15px;cursor:pointer;list-style:none;display:flex;align-items:center;gap:10px}
+summary::after{content:"→";color:var(--muted);font-weight:700;margin-left:auto}
+summary .qi{font-size:17px;line-height:1;flex:none}
+summary::-webkit-details-marker{display:none}
+details p{padding:0 18px 16px 42px;font-size:14.5px;color:var(--muted);line-height:1.75}
+details p+p{margin-top:10px}
+details p b{color:var(--ink)}
+details[open] summary{border-bottom:1px solid var(--line);margin-bottom:12px}
+
+.ad-slot{margin:40px 0;min-height:100px;border:1px dashed var(--line);border-radius:13px;display:grid;place-items:center;color:#B9BCB6;font-size:12px;letter-spacing:.15em}
+
+footer{margin-top:64px;padding-top:24px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+footer nav{padding:0 0 12px;justify-content:flex-start;gap:16px}
+footer nav a{color:var(--muted);text-decoration:none;font-weight:600}
+
+@media (prefers-reduced-motion:reduce){
+  .bar div,.chip,.seg button,.next a{transition:none}
+}
+</style>
+
+
+<style>
+/* 한글이 좁은 flex/grid 레이아웃에서 한 글자씩 쪼개지는 것을 방지 */
+body, nav, .qopts button, .card, .next a, .next, .cmp-table{word-break:keep-all;overflow-wrap:break-word}
+.tl-item.important{background:var(--accent-soft);border-radius:14px;padding:20px 18px;margin:8px 0;border-bottom:none}
+.tl-item.important + .tl-item{border-top:none}
+.tl-star{display:inline-block;font-size:11px;font-weight:700;color:#fff;background:var(--ink);border-radius:999px;padding:3px 10px;margin-left:6px;vertical-align:middle}
+.guide-hero{padding:38px 0 20px}
+.guide-hero .eyebrow{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.13em;color:var(--ink);background:var(--hover);border-radius:999px;padding:6px 13px;margin-bottom:16px}
+.guide-hero p{margin-top:14px;color:var(--muted);font-size:16px;max-width:56ch}
+.timeline{margin-top:30px;border-top:1px solid var(--line)}
+.tl-item{display:flex;gap:18px;padding:20px 2px;border-bottom:1px solid var(--line)}
+.tl-month{flex:none;width:64px;font-family:"Space Grotesk","Pretendard Variable",sans-serif;font-size:20px;font-weight:800;color:var(--ink)}
+.tl-month small{display:block;font-size:11px;font-weight:700;color:var(--muted);font-family:"Pretendard Variable",sans-serif}
+.tl-body b{font-size:15.5px;font-weight:700}
+.tl-body p{margin-top:6px;font-size:14px;color:var(--muted);line-height:1.65}
+.tl-tag{display:inline-block;font-size:11px;font-weight:700;color:var(--accent);background:var(--accent-soft);border-radius:999px;padding:3px 10px;margin-left:6px;vertical-align:middle}
+.qbox{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:28px 24px;margin-top:24px}
+.qbox .qnum{font-size:12px;font-weight:700;color:var(--muted);margin-bottom:8px}
+.qbox h3{font-size:19px;font-weight:800;margin-bottom:18px;letter-spacing:-.01em}
+.qopts{display:grid;gap:10px}
+.qopts button{
+  font:inherit;font-size:15px;font-weight:700;text-align:left;padding:15px 18px;border-radius:12px;cursor:pointer;
+  border:1px solid var(--line);background:var(--surface);color:var(--ink);transition:all .15s;
+}
+.qopts button:hover{border-color:var(--ink);background:var(--hover)}
+.qresult{display:none;margin-top:24px}
+.qresult.on{display:block}
+.qresult .card{border:1px solid var(--line);background:var(--surface);box-shadow:var(--shadow)}
+.qresult .card h3{font-size:18px;font-weight:800;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.qrestart{margin-top:14px;font-size:13.5px;font-weight:700;color:var(--muted);background:none;border:none;cursor:pointer;text-decoration:underline;text-underline-offset:3px;padding:0}
+.cmp-table{width:100%;border-collapse:collapse;margin-top:24px;font-size:14.5px}
+.cmp-table th,.cmp-table td{padding:14px 14px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.cmp-table th{font-size:12.5px;font-weight:700;color:var(--muted);text-transform:none}
+.cmp-table td.k{font-weight:700;color:var(--ink);white-space:nowrap;width:110px}
+.cmp-table tbody tr:hover{background:var(--hover)}
+@media (max-width:640px){
+  .cmp-table{display:block;overflow-x:auto;white-space:nowrap}
+}
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "견적서에 \"VAT 별도\"라고 안 쓰면 생기는 일",
+  "url": "https://www.freecalc.kr/library/quote-vat-separate",
+  "description": "사업자등록을 한 프리랜서가 견적서에 부가세 포함·별도를 적지 않았을 때 생기는 손해와, 견적서·계약서에 바로 쓸 수 있는 안내 문구를 정리했습니다.",
+  "datePublished": "2026-10-21",
+  "dateModified": "2026-10-21",
+  "author": {"@type": "Organization", "name": "프리랜서 계산기"},
+  "publisher": {"@type": "Organization", "name": "프리랜서 계산기", "url": "https://www.freecalc.kr/"},
+  "isPartOf": {"@type": "WebSite", "name": "프리랜서 계산기", "url": "https://www.freecalc.kr/"},
+  "inLanguage": "ko-KR"
+}
+</script>
+</head>
+<body>
+<div class="wrap">
+<div id="site-nav"></div>
+<script src="/nav.js"></script>
+
+
+<style>
+.article-body h2{font-size:20px;font-weight:800;margin:36px 0 14px;letter-spacing:-.01em}
+.article-body h2:first-child{margin-top:0}
+.article-body p{color:var(--muted);font-size:15.5px;line-height:1.8;margin-bottom:14px}
+.article-body ul,.article-body ol{margin:14px 0 18px 0;padding-left:22px;color:var(--muted);font-size:15.5px;line-height:1.85}
+.article-body li{margin-bottom:8px}
+.article-body li b{color:var(--ink)}
+.article-body strong{color:var(--ink)}
+</style>
+
+<div class="guide-hero">
+  <div class="eyebrow">📄 프리랜서 꿀팁</div>
+  <h1>견적서에 <em>"VAT 별도"</em>를 안 쓰면</h1>
+  <p>사업자등록을 하고 나서 가장 많이 하는 실수가 견적서에 부가세 표기를 빠뜨리는 거예요. 금액이 얼마나 달라지는지, 어떻게 적어야 하는지 정리했어요.</p>
+</div>
+
+<div class="article-body">
+<h2>이 글은 사업자등록을 한 프리랜서를 위한 글이에요</h2>
+<p>사업자등록 없이 3.3%만 떼고 일하는 프리랜서는 대부분 <b>부가세가 면제되는 인적용역</b>으로 처리돼서, 견적서에 부가세를 적을 일이 없어요. 반대로 <b>사업자등록을 하고 세금계산서를 발행</b>하는 순간부터는 거래 금액에 부가세 10%가 붙어요. 이때부터 견적서의 부가세 표기가 중요해져요.</p>
+<p>내가 3.3%와 세금계산서 중 어느 쪽에 해당하는지 헷갈린다면 <a href="/guides/receipt-finder">증빙 방식 찾기</a>로 먼저 확인해보세요.</p>
+
+<h2>표기를 빠뜨리면 왜 손해일까요</h2>
+<p>견적서에 "300만 원"이라고만 적었다고 해볼게요. 나는 300만 원에 부가세 30만 원을 더 받을 생각이었는데, 클라이언트는 <b>부가세가 포함된 총액이 300만 원</b>이라고 생각할 수 있어요. 부가세 포함 여부를 따로 정하지 않았다면 거래 금액에 부가세가 포함된 것으로 보는 경우가 많아서, 나중에 다투기도 어려워요.</p>
+<table class="cmp-table">
+  <thead><tr><th>견적서 표기</th><th>받는 총액</th><th>그중 부가세</th><th>내 몫 (공급가액)</th></tr></thead>
+  <tbody>
+    <tr><td class="k">300만 원 (VAT 별도)</td><td>330만 원</td><td>30만 원</td><td><b>300만 원</b></td></tr>
+    <tr><td class="k">300만 원 (표기 없음)</td><td>300만 원</td><td>약 27만 3천 원</td><td><b>약 272만 7천 원</b></td></tr>
+  </tbody>
+</table>
+<p>부가세는 내 돈이 아니라 <b>클라이언트에게 받아서 국세청에 내는 돈</b>이에요. 총액 300만 원 안에 부가세가 들어 있으면, 그중 약 27만 3천 원을 신고 때 내야 해요. 결국 <b>내 몫이 약 9% 줄어드는 셈</b>이에요.</p>
+<div class="formula">부가세 포함 총액 ÷ 1.1 = 공급가액 (내 몫)</div>
+
+<h2>견적서에 이렇게 적으세요</h2>
+<p>가장 확실한 방법은 <b>공급가액, 부가세, 합계를 따로 적는 것</b>이에요. 클라이언트도 예산을 잡을 때 헷갈리지 않아요.</p>
+<table class="cmp-table">
+  <thead><tr><th>항목</th><th>금액</th></tr></thead>
+  <tbody>
+    <tr><td class="k">공급가액</td><td>3,000,000원</td></tr>
+    <tr><td class="k">부가세 (10%)</td><td>300,000원</td></tr>
+    <tr><td class="k">합계</td><td><b>3,300,000원</b></td></tr>
+  </tbody>
+</table>
+<p>표로 나누기 어렵다면 금액 옆에 한 줄만 적어도 돼요. 이런 문구를 그대로 써보세요.</p>
+<ul>
+  <li><b>별도로 받을 때:</b> "견적 금액 3,000,000원 (부가세 별도)"</li>
+  <li><b>포함해서 받을 때:</b> "총액 3,300,000원 (부가세 포함, 공급가액 3,000,000원)"</li>
+  <li><b>메일·메신저로 보낼 때:</b> "말씀드린 금액은 부가세 별도 기준이며, 세금계산서 발행 시 부가세 10%가 추가됩니다."</li>
+</ul>
+<p><a href="/tools/vat-quote">부가세 견적 계산기</a>에 받고 싶은 금액을 넣으면 공급가액·부가세·합계와 함께 이런 안내 문구를 바로 복사할 수 있어요.</p>
+
+<h2>계약서와 세금계산서도 맞춰주세요</h2>
+<ul>
+  <li><b>계약서:</b> 계약 금액 조항에 "부가가치세 별도" 또는 "부가가치세 포함"을 꼭 적어요. 견적서와 계약서가 다르면 계약서가 기준이 되는 경우가 많아요.</li>
+  <li><b>세금계산서:</b> 공급가액 300만 원, 세액 30만 원으로 나눠서 발행해요. 총액으로만 받기로 했다면 공급가액 2,727,273원, 세액 272,727원처럼 나눠서 발행해요.</li>
+  <li><b>입금 확인:</b> 별도로 받기로 했다면 입금액이 330만 원인지 확인해요. 300만 원만 들어왔다면 바로 문의하는 게 좋아요.</li>
+</ul>
+<p>저도 사업자등록을 하고 첫 견적에서 금액만 적어 보냈다가, 입금된 금액을 보고 부가세 포함으로 처리됐다는 걸 알았어요. 그 뒤로는 견적서 템플릿에 공급가액·부가세·합계 칸을 고정해서 쓰고 있어요.</p>
+
+<h2>이미 표기 없이 보냈다면</h2>
+<p>견적서를 보낸 뒤에 부가세 표기를 빠뜨린 걸 알았다면, 계약하기 전에 바로잡는 게 가장 좋아요. 시간이 지날수록 클라이언트는 처음 본 숫자를 총예산으로 확정해버려요.</p>
+<ul>
+  <li><b>계약 전이라면:</b> "앞서 드린 금액은 부가세 별도 기준이며, 세금계산서 발행 시 부가세 10%가 추가됩니다"라고 바로 정정 메일을 보내요. 수정한 견적서를 다시 첨부하면 더 확실해요.</li>
+  <li><b>이미 계약했다면:</b> 계약서에 부가세 조항이 있는지 먼저 확인해요. 조항이 없다면 클라이언트와 협의해보고, 협의가 어렵다면 총액에 부가세가 포함된 것으로 보고 세금계산서를 나눠서 발행해요.</li>
+  <li><b>다음 견적부터는:</b> 견적서 템플릿에 부가세 칸을 고정해두면 같은 실수를 막을 수 있어요.</li>
+</ul>
+
+<h2>받은 부가세는 따로 모아두세요</h2>
+<p>부가세는 바로 내는 게 아니라 <b>신고 기간에 몰아서</b> 내요. 일반과세자는 1월(하반기분)과 7월(상반기분)에 신고·납부해요. 그 사이 통장에 있는 부가세를 생활비로 써버리면 신고 때 목돈이 필요해져요. 받은 부가세는 별도 통장에 바로 옮겨두는 습관을 들이면 좋아요.</p>
+<p>장비 구입처럼 매입이 많았다면 낸 부가세를 돌려받을 수도 있어요. 예상 납부액이나 환급액은 <a href="/tools/vat-refund">부가세 환급 계산기</a>에서 확인해보세요.</p>
+
+<h2>정리하면</h2>
+<ul>
+  <li>사업자등록 후 세금계산서를 발행한다면 견적서에 부가세 포함·별도를 꼭 적어요.</li>
+  <li>표기를 빠뜨리면 총액 안에 부가세가 포함된 것으로 처리돼 내 몫이 약 9% 줄어들 수 있어요.</li>
+  <li>공급가액·부가세·합계를 나눠 적는 게 가장 확실해요.</li>
+  <li>받은 부가세는 신고 때까지 따로 모아둬요.</li>
+</ul>
+<p>부가가치세 기준은 <a href="https://www.nts.go.kr" target="_blank" rel="noopener">국세청</a>에서 확인할 수 있어요.</p>
+<p><small>최종 검토일: 2026년 10월 21일 · 2026년 기준</small></p>
+</div>
+<section>
+  <div class="sec-head"><h2>이어서 확인하기</h2></div>
+  <div class="next">
+    <a href="/tools/vat-quote"><span>📄 부가세 견적 계산기<small>견적 총액과 안내 문구 바로 만들기</small></span></a>
+    <a href="/library/simplified-vs-general-taxpayer"><span>🏷️ 간이과세자 vs 일반과세자<small>나는 부가세를 얼마나 낼까</small></span></a>
+  </div>
+</section>
+
+<footer>
+  <nav><a href="/about">소개</a><a href="/contact">문의</a><a href="/privacy">개인정보처리방침</a><a href="/terms">이용약관</a></nav>
+  <p>본 결과는 참고용이며 법적 효력이 없습니다. 공식 기준은 <a href="https://www.nts.go.kr" target="_blank" rel="noopener">국세청</a>에서 확인하세요.<br>© 프리랜서 계산기 · freecalc.kr</p>
+</footer>
+
+</div>
+
+
+</body>
+</html>
