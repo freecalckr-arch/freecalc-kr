@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>종소세 신고 기한을 놓쳤다면? 기한 후 신고와 가산세 정리 | 프리랜서 계산기</title>
+<meta name="description" content="5월 종합소득세 신고를 놓친 프리랜서를 위해 기한 후 신고 방법, 무신고·납부지연 가산세와 감면 구간, 못 받은 환급을 5년 안에 돌려받는 방법을 정리했습니다.">
+<link rel="canonical" href="https://www.freecalc.kr/library/late-income-tax-filing">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="프리랜서 계산기">
+<meta property="og:title" content="종소세 신고 기한을 놓쳤다면? 기한 후 신고와 가산세 정리 | 프리랜서 계산기">
+<meta property="og:description" content="5월 종합소득세 신고를 놓친 프리랜서를 위해 기한 후 신고 방법, 무신고·납부지연 가산세와 감면 구간, 못 받은 환급을 5년 안에 돌려받는 방법을 정리했습니다.">
+<meta property="og:image" content="https://www.freecalc.kr/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://www.freecalc.kr/library/late-income-tax-filing">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="종소세 신고 기한을 놓쳤다면? 기한 후 신고와 가산세 정리 | 프리랜서 계산기">
+<meta name="twitter:description" content="5월 종합소득세 신고를 놓친 프리랜서를 위해 기한 후 신고 방법, 무신고·납부지연 가산세와 감면 구간, 못 받은 환급을 5년 안에 돌려받는 방법을 정리했습니다.">
+<meta name="twitter:image" content="https://www.freecalc.kr/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="/common.css">
+<script src="/common.js"></script>
+<style>
+:root{
+  --bg:#FFFFFF; --hover:#F7F7F5;
+  --surface:#FFFFFF;
+  --ink:#191919;
+  --muted:#787774;
+  --line:#EAEAE8;
+  --accent:#191919;
+  --accent-soft:#F1F1EF;
+  --slate:#2B2F36;
+  --shadow:0 1px 2px rgba(0,0,0,.04),0 16px 40px rgba(23,25,28,.07);
+  --r:12px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:"Pretendard Variable",Pretendard,-apple-system,sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.6;font-size:16px;
+}
+.num{font-family:"Space Grotesk","Pretendard Variable",sans-serif;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.wrap{max-width:800px;margin:0 auto;padding:0 20px 90px}
+
+/* ── nav ── */
+nav{display:flex;justify-content:space-between;align-items:center;padding:20px 0}
+.logo{font-weight:800;font-size:19px;letter-spacing:-.02em;display:flex;align-items:center;gap:6px}
+.logo img{height:39px;width:auto;display:block}
+nav .links{display:flex;gap:18px;font-size:14px;color:var(--muted);font-weight:600}
+nav .links a{color:inherit;text-decoration:none}
+.nav-pick{position:relative}
+.nav-pick-btn{
+  font:inherit;font-size:14px;font-weight:600;color:var(--muted);background:none;border:none;
+  cursor:pointer;display:flex;align-items:center;gap:4px;padding:0;
+}
+.nav-pick-btn:hover{color:var(--ink)}
+.nav-pick-btn svg{transition:transform .15s}
+.nav-pick.open .nav-pick-btn{color:var(--ink)}
+.nav-pick.open .nav-pick-btn svg{transform:rotate(180deg)}
+.nav-pick-menu{
+  position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%);min-width:220px;
+  background:#FFFFFF;border:1px solid var(--line);border-radius:14px;
+  box-shadow:0 4px 12px rgba(0,0,0,.06),0 12px 32px rgba(23,25,28,.12);
+  padding:6px;display:none;z-index:200;
+}
+.nav-pick.open .nav-pick-menu{display:block}
+.nav-pick-menu a{
+  display:flex;align-items:center;gap:9px;font-size:14px;font-weight:600;color:var(--ink);
+  text-decoration:none;border-radius:9px;padding:10px 12px;white-space:nowrap;
+}
+.nav-pick-menu a:hover{background:var(--hover)}
+.nav-pick-menu a.current{font-weight:700;background:var(--hover)}
+.nav-pick-menu a .soon{margin-left:auto;font-size:10.5px;font-weight:700;color:var(--faint);background:var(--hover);border-radius:6px;padding:2px 6px}
+.nav-pick-menu a.current .soon{background:#fff}
+
+/* ── 모바일 nav: 햄버거 메뉴 ── */
+.nav-toggle{display:none}
+@media (max-width:640px){
+  nav{position:relative}
+  .nav-toggle{
+    display:flex;align-items:center;justify-content:center;
+    width:38px;height:38px;border:1px solid var(--line);border-radius:10px;
+    background:var(--surface);color:var(--ink);cursor:pointer;flex:none;
+  }
+  nav .links{
+    display:none;position:absolute;top:calc(100% + 8px);left:0;right:0;
+    flex-direction:column;align-items:stretch;gap:2px;
+    background:#FFFFFF;border:1px solid var(--line);border-radius:14px;
+    box-shadow:0 4px 12px rgba(0,0,0,.06),0 12px 32px rgba(23,25,28,.12);
+    padding:8px;z-index:150;
+  }
+  nav .links.open{display:flex}
+  nav .links > a{padding:12px 10px;border-radius:9px}
+  nav .links > a:hover{background:var(--hover)}
+  .nav-pick{width:100%}
+  .nav-pick-btn{width:100%;justify-content:space-between;padding:12px 10px;border-radius:9px}
+  .nav-pick-btn:hover{background:var(--hover)}
+  .nav-pick-menu{
+    position:static;transform:none;box-shadow:none;border:none;padding:0;
+    min-width:0;width:100%;margin-top:2px;background:var(--hover);border-radius:9px;
+  }
+}
+
+
+/* ── hero ── */
+.hero{padding:38px 0 30px}
+.eyebrow{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.13em;color:var(--ink);background:var(--hover);border-radius:999px;padding:6px 13px;margin-bottom:16px;text-transform:none}
+.eyebrow b{color:var(--accent);font-family:"Space Grotesk"}
+h1{font-size:clamp(32px,8vw,48px);font-weight:800;letter-spacing:-.035em;line-height:1.16}
+h1 em{font-style:normal;color:var(--accent);font-family:"Space Grotesk";font-weight:700}
+.hero p{margin-top:14px;color:var(--muted);font-size:16px;max-width:52ch}
+
+/* ── calc ── */
+.calc{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:26px 22px;margin-top:10px}
+.seg{display:flex;background:var(--hover);border-radius:12px;padding:4px;margin-bottom:22px}
+.seg button{
+  flex:1;font:inherit;font-size:14px;font-weight:700;padding:11px 6px;border:none;border-radius:9px;
+  background:transparent;color:var(--muted);cursor:pointer;transition:all .18s ease;
+}
+.seg button[aria-pressed="true"]{background:#FFFFFF;color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.seg button:not([aria-pressed="true"]):hover{color:var(--ink)}
+.guide-box{display:flex;gap:10px;align-items:flex-start;background:#FEF9E7;border-radius:12px;padding:14px 16px;margin-bottom:18px;font-size:13.5px;line-height:1.55;color:#5C5638}
+.guide-box .emo{font-size:16px;line-height:1.45;flex:none}
+.guide-box b{color:#3D3A22}
+label.field{display:block;font-size:13px;font-weight:700;color:var(--muted);margin-bottom:9px}
+.amount{display:flex;align-items:baseline;gap:10px;border-bottom:2px solid var(--ink);padding-bottom:8px;transition:border-color .18s}
+.amount:focus-within{border-color:var(--accent)}
+.amount input{
+  flex:1;border:none;background:transparent;outline:none;min-width:0;
+  font-family:"Space Grotesk","Pretendard Variable",sans-serif;
+  font-size:clamp(30px,8vw,40px);font-weight:700;letter-spacing:-.02em;color:var(--ink);
+  font-variant-numeric:tabular-nums;
+}
+.amount input::placeholder{color:#C9CBC6}
+.amount .won{font-size:18px;font-weight:700;color:var(--muted)}
+.quick{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+.quick button{
+  font:inherit;font-size:13px;font-weight:600;padding:8px 14px;border-radius:999px;cursor:pointer;
+  border:1px solid var(--line);background:var(--surface);color:var(--muted);transition:all .15s;
+}
+.quick button:hover{border-color:var(--ink);color:var(--ink)}
+
+/* ── result ── */
+.result{margin-top:28px;display:none}
+.result.on{display:block}
+.headline{display:flex;justify-content:space-between;align-items:flex-end;gap:10px;flex-wrap:wrap}
+.headline .k{font-size:13px;font-weight:700;color:var(--muted)}
+.big{font-family:"Space Grotesk","Pretendard Variable",sans-serif;font-size:clamp(34px,9vw,46px);font-weight:700;letter-spacing:-.03em;line-height:1.05;font-variant-numeric:tabular-nums}
+.big small{font-size:.5em;font-weight:700;margin-left:2px}
+.chip{
+  display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--accent);
+  background:var(--accent-soft);border-radius:999px;padding:6px 12px;
+  opacity:0;transform:scale(.7);transition:all .25s cubic-bezier(.2,1.6,.4,1);
+}
+.chip.on{opacity:1;transform:scale(1)}
+
+/* flow bar — signature */
+.flow{margin:22px 0 8px}
+.bar{display:flex;height:46px;border-radius:11px;overflow:hidden;background:var(--bg)}
+.bar div{transition:width .55s cubic-bezier(.3,.9,.3,1);min-width:2px}
+.bar .net{background:#1FAE5F}
+.bar .tax{background:#F0A93E}
+.bar .local{background:#4C7CF0}
+.legend{display:flex;gap:16px;margin-top:12px;flex-wrap:wrap;font-size:13px}
+.legend span{display:flex;align-items:center;gap:6px;color:var(--muted);font-weight:600}
+.legend i{width:10px;height:10px;border-radius:3px;display:inline-block}
+.legend .v{color:var(--ink);font-weight:700}
+
+.rows{margin-top:18px;border-top:1px solid var(--line)}
+.row{display:flex;justify-content:space-between;align-items:baseline;padding:12px 2px;border-bottom:1px solid var(--line);font-size:15px}
+.row .k{color:var(--muted);font-weight:600}
+.row .v{font-weight:700}
+.row.minus .v{color:var(--slate)}
+
+.actions{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap;justify-content:center}
+.actions button{display:flex;align-items:center;gap:7px;justify-content:center;
+  font:inherit;font-size:14px;font-weight:700;padding:12px 18px;border-radius:11px;cursor:pointer;transition:all .15s;
+}
+.btn-share{border:none;background:var(--ink);color:#fff}
+.btn-share:hover{background:#000}
+.btn-copy{border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+.btn-copy:hover{border-color:var(--ink)}
+.share-note{font-size:12px;color:var(--muted);margin-top:10px;text-align:center}
+.trust{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px;justify-content:center}
+.trust span{font-size:12px;font-weight:600;color:var(--muted);background:var(--bg);border-radius:7px;padding:5px 10px}
+
+/* ── sections ── */
+section{margin-top:56px}
+h2{font-size:22px;font-weight:800;letter-spacing:-.02em;margin-bottom:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px;margin-bottom:12px}
+.card h3{font-size:16px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:9px}
+.card h3 .hi{font-size:19px;line-height:1}
+.card p{font-size:14.5px;color:var(--muted);line-height:1.75}
+.card p+p{margin-top:10px}
+.card p b{color:var(--ink)}
+.formula{
+  font-family:"Space Grotesk","Pretendard Variable",sans-serif;font-variant-numeric:tabular-nums;
+  background:var(--hover);border-radius:10px;padding:14px 16px;font-size:16.5px;margin:10px 0;
+  font-weight:600;color:var(--ink);width:100%;text-align:center;
+}
+a{color:var(--ink);font-weight:700;text-underline-offset:3px}
+.next{display:grid;gap:10px}
+.next a{
+  display:flex;justify-content:space-between;align-items:center;background:var(--surface);
+  border:1px solid var(--line);border-radius:14px;padding:17px 18px;text-decoration:none;
+  font-weight:700;font-size:15px;transition:all .15s;
+}
+.next a:hover{border-color:var(--ink);transform:translateY(-1px)}
+.next a small{display:block;font-weight:500;font-size:12.5px;color:var(--muted);margin-top:2px}
+.next a::after{content:"→";color:var(--muted);font-weight:700}
+
+details{background:var(--surface);border:1px solid var(--line);border-radius:13px;margin-bottom:10px;overflow:hidden}
+summary{padding:16px 18px;font-weight:700;font-size:15px;cursor:pointer;list-style:none;display:flex;align-items:center;gap:10px}
+summary::after{content:"→";color:var(--muted);font-weight:700;margin-left:auto}
+summary .qi{font-size:17px;line-height:1;flex:none}
+summary::-webkit-details-marker{display:none}
+details p{padding:0 18px 16px 42px;font-size:14.5px;color:var(--muted);line-height:1.75}
+details p+p{margin-top:10px}
+details p b{color:var(--ink)}
+details[open] summary{border-bottom:1px solid var(--line);margin-bottom:12px}
+
+.ad-slot{margin:40px 0;min-height:100px;border:1px dashed var(--line);border-radius:13px;display:grid;place-items:center;color:#B9BCB6;font-size:12px;letter-spacing:.15em}
+
+footer{margin-top:64px;padding-top:24px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+footer nav{padding:0 0 12px;justify-content:flex-start;gap:16px}
+footer nav a{color:var(--muted);text-decoration:none;font-weight:600}
+
+@media (prefers-reduced-motion:reduce){
+  .bar div,.chip,.seg button,.next a{transition:none}
+}
+</style>
+
+
+<style>
+/* 한글이 좁은 flex/grid 레이아웃에서 한 글자씩 쪼개지는 것을 방지 */
+body, nav, .qopts button, .card, .next a, .next, .cmp-table{word-break:keep-all;overflow-wrap:break-word}
+.tl-item.important{background:var(--accent-soft);border-radius:14px;padding:20px 18px;margin:8px 0;border-bottom:none}
+.tl-item.important + .tl-item{border-top:none}
+.tl-star{display:inline-block;font-size:11px;font-weight:700;color:#fff;background:var(--ink);border-radius:999px;padding:3px 10px;margin-left:6px;vertical-align:middle}
+.guide-hero{padding:38px 0 20px}
+.guide-hero .eyebrow{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.13em;color:var(--ink);background:var(--hover);border-radius:999px;padding:6px 13px;margin-bottom:16px}
+.guide-hero p{margin-top:14px;color:var(--muted);font-size:16px;max-width:56ch}
+.timeline{margin-top:30px;border-top:1px solid var(--line)}
+.tl-item{display:flex;gap:18px;padding:20px 2px;border-bottom:1px solid var(--line)}
+.tl-month{flex:none;width:64px;font-family:"Space Grotesk","Pretendard Variable",sans-serif;font-size:20px;font-weight:800;color:var(--ink)}
+.tl-month small{display:block;font-size:11px;font-weight:700;color:var(--muted);font-family:"Pretendard Variable",sans-serif}
+.tl-body b{font-size:15.5px;font-weight:700}
+.tl-body p{margin-top:6px;font-size:14px;color:var(--muted);line-height:1.65}
+.tl-tag{display:inline-block;font-size:11px;font-weight:700;color:var(--accent);background:var(--accent-soft);border-radius:999px;padding:3px 10px;margin-left:6px;vertical-align:middle}
+.qbox{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:28px 24px;margin-top:24px}
+.qbox .qnum{font-size:12px;font-weight:700;color:var(--muted);margin-bottom:8px}
+.qbox h3{font-size:19px;font-weight:800;margin-bottom:18px;letter-spacing:-.01em}
+.qopts{display:grid;gap:10px}
+.qopts button{
+  font:inherit;font-size:15px;font-weight:700;text-align:left;padding:15px 18px;border-radius:12px;cursor:pointer;
+  border:1px solid var(--line);background:var(--surface);color:var(--ink);transition:all .15s;
+}
+.qopts button:hover{border-color:var(--ink);background:var(--hover)}
+.qresult{display:none;margin-top:24px}
+.qresult.on{display:block}
+.qresult .card{border:1px solid var(--line);background:var(--surface);box-shadow:var(--shadow)}
+.qresult .card h3{font-size:18px;font-weight:800;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.qrestart{margin-top:14px;font-size:13.5px;font-weight:700;color:var(--muted);background:none;border:none;cursor:pointer;text-decoration:underline;text-underline-offset:3px;padding:0}
+.cmp-table{width:100%;border-collapse:collapse;margin-top:24px;font-size:14.5px}
+.cmp-table th,.cmp-table td{padding:14px 14px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.cmp-table th{font-size:12.5px;font-weight:700;color:var(--muted);text-transform:none}
+.cmp-table td.k{font-weight:700;color:var(--ink);white-space:nowrap;width:110px}
+.cmp-table tbody tr:hover{background:var(--hover)}
+@media (max-width:640px){
+  .cmp-table{display:block;overflow-x:auto;white-space:nowrap}
+}
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "종소세 신고 기한을 놓쳤다면? 기한 후 신고와 가산세 정리",
+  "url": "https://www.freecalc.kr/library/late-income-tax-filing",
+  "description": "5월 종합소득세 신고를 놓친 프리랜서를 위해 기한 후 신고 방법, 무신고·납부지연 가산세와 감면 구간, 못 받은 환급을 5년 안에 돌려받는 방법을 정리했습니다.",
+  "datePublished": "2026-10-21",
+  "dateModified": "2026-10-21",
+  "author": {"@type": "Organization", "name": "프리랜서 계산기"},
+  "publisher": {"@type": "Organization", "name": "프리랜서 계산기", "url": "https://www.freecalc.kr/"},
+  "isPartOf": {"@type": "WebSite", "name": "프리랜서 계산기", "url": "https://www.freecalc.kr/"},
+  "inLanguage": "ko-KR"
+}
+</script>
+</head>
+<body>
+<div class="wrap">
+<div id="site-nav"></div>
+<script src="/nav.js"></script>
+
+
+<style>
+.article-body h2{font-size:20px;font-weight:800;margin:36px 0 14px;letter-spacing:-.01em}
+.article-body h2:first-child{margin-top:0}
+.article-body p{color:var(--muted);font-size:15.5px;line-height:1.8;margin-bottom:14px}
+.article-body ul,.article-body ol{margin:14px 0 18px 0;padding-left:22px;color:var(--muted);font-size:15.5px;line-height:1.85}
+.article-body li{margin-bottom:8px}
+.article-body li b{color:var(--ink)}
+.article-body strong{color:var(--ink)}
+</style>
+
+<div class="guide-hero">
+  <div class="eyebrow">⏰ 세금 자료</div>
+  <h1>종소세 신고 <em>기한을 놓쳤다면</em></h1>
+  <p>5월이 지나버렸어도 늦지 않았어요. 환급받을 사람은 가산세 걱정 없이 지금 신고하면 되고, 낼 세금이 있다면 빨리 신고할수록 가산세가 줄어요.</p>
+</div>
+
+<div class="article-body">
+<h2>먼저 확인할 것: 환급인지, 낼 세금인지</h2>
+<p>기한을 놓쳤을 때 가장 먼저 할 일은 <b>내가 돌려받을 사람인지, 더 낼 사람인지</b> 확인하는 거예요. 상황에 따라 대응이 완전히 달라요.</p>
+<ul>
+  <li><b>환급받을 사람:</b> 가산세는 낼 세금을 기준으로 매기기 때문에, 낼 세금이 없다면 가산세도 사실상 없어요. 늦게라도 신고하면 환급을 받을 수 있어요.</li>
+  <li><b>추가로 낼 사람:</b> 신고를 안 한 데 대한 가산세와 늦게 낸 데 대한 가산세가 붙어요. 하루라도 빨리 신고하는 게 좋아요.</li>
+</ul>
+<p>3.3%만 떼인 프리랜서는 소득이 크지 않고 다른 소득이 없다면 환급받는 경우가 많아요. <a href="/tools/income-tax">종합소득세 예상 계산기</a>로 먼저 확인해보세요.</p>
+
+<h2>기한 후 신고는 이렇게 해요</h2>
+<p>신고 기한이 지난 뒤에 하는 신고를 <b>기한 후 신고</b>라고 해요. 세무서가 세금을 정해서 고지하기 전까지는 언제든 할 수 있어요.</p>
+<ol>
+  <li><a href="https://www.hometax.go.kr" target="_blank" rel="noopener">홈택스</a>에 로그인해서 종합소득세 신고 메뉴로 들어가요.</li>
+  <li>신고 구분에서 <b>기한후신고</b>를 선택해요.</li>
+  <li>이후 과정은 정기신고와 같아요. 소득을 불러오고, 경비율을 적용하고, 공제를 입력해요.</li>
+  <li>추가로 낼 세금이 있다면 가산세가 자동으로 계산돼서 함께 표시돼요.</li>
+  <li>제출한 뒤에 위택스에서 지방소득세도 신고해요.</li>
+</ol>
+<p>입력 순서는 <a href="/library/income-tax-hometax-guide">홈택스 종합소득세 신고 따라하기</a>와 같아요.</p>
+
+<h2>가산세는 이렇게 붙어요</h2>
+<table class="cmp-table">
+  <thead><tr><th>가산세</th><th>계산 방법</th></tr></thead>
+  <tbody>
+    <tr><td class="k">무신고가산세</td><td>낼 세금의 20% (부정한 무신고는 40%)</td></tr>
+    <tr><td class="k">납부지연가산세</td><td>안 낸 세금 × 하루 0.022% × 늦어진 날수</td></tr>
+  </tbody>
+</table>
+<p>무신고가산세는 <b>빨리 신고할수록 줄어들어요.</b></p>
+<table class="cmp-table">
+  <thead><tr><th>기한 후 신고 시점</th><th>무신고가산세 감면</th></tr></thead>
+  <tbody>
+    <tr><td class="k">1개월 이내</td><td>50% 감면</td></tr>
+    <tr><td class="k">1개월 초과 ~ 3개월 이내</td><td>30% 감면</td></tr>
+    <tr><td class="k">3개월 초과 ~ 6개월 이내</td><td>20% 감면</td></tr>
+  </tbody>
+</table>
+<p>예를 들어 낼 세금이 100만 원인데 6월 말에 신고하고 바로 납부했다면, 무신고가산세는 20만 원의 50%인 10만 원이에요. 납부지연가산세는 100만 원 × 0.022% × 30일 정도로 약 6,600원이 붙어요. 7월을 넘기면 감면율이 30%로 줄어들어요.</p>
+
+<h2>못 받은 환급은 5년까지 돌려받을 수 있어요</h2>
+<p>프리랜서 일을 하면서 몇 년 동안 5월 신고를 안 했다면, 그동안 떼인 3.3% 중 돌려받을 돈이 쌓여 있을 수 있어요. 종합소득세 환급은 <b>법정 신고 기한부터 5년 이내</b>에 청구할 수 있어요.</p>
+<ul>
+  <li><b>신고를 아예 안 했던 해:</b> 기한 후 신고로 환급을 받아요.</li>
+  <li><b>신고는 했는데 공제를 빠뜨린 해:</b> <b>경정청구</b>로 바로잡아서 차액을 돌려받아요. 부양가족이나 노란우산공제를 빠뜨렸을 때가 대표적이에요.</li>
+</ul>
+<p>2026년 10월 기준이라면 2021년 귀속(2022년 5월 신고분)까지 청구할 수 있어요. 2021년 귀속분은 2027년 5월 말이 지나면 청구할 수 없어요. 해마다 가장 오래된 1년치가 기한에서 빠지니 빨리 확인하는 게 좋아요.</p>
+<p>저도 프리랜서 첫해에는 3.3%로 끝난 줄 알고 5월 신고를 안 했어요. 다음 해에 알게 돼서 기한 후 신고를 했는데, 낼 세금이 없어서 가산세 없이 환급만 받았어요.</p>
+
+<h2>자주 묻는 질문</h2>
+<p><b>Q. 세무서에서 연락이 오기 전에 신고하면 괜찮나요?</b><br>네, 세무서가 세금을 결정해서 고지하기 전에 스스로 기한 후 신고를 하면 가산세 감면을 받을 수 있어요. 고지가 나온 뒤에는 감면 없이 가산세가 그대로 붙어요.</p>
+<p><b>Q. 세금을 한 번에 낼 돈이 없으면 어떻게 하나요?</b><br>신고는 먼저 해두는 게 좋아요. 신고만 해도 무신고가산세가 줄고, 납부지연가산세는 낸 날까지만 붙어요. 사정이 어렵다면 관할 세무서에 납부기한 연장이나 분납을 상담해볼 수 있어요.</p>
+<p><b>Q. 몇 년 치를 한꺼번에 신고해도 되나요?</b><br>네, 연도별로 각각 기한 후 신고를 하면 돼요. 홈택스에서 귀속연도를 바꿔가며 차례로 신고할 수 있어요.</p>
+
+<h2>지방소득세도 잊지 마세요</h2>
+<p>종합소득세를 기한 후 신고했다면 지방소득세도 함께 신고해야 해요. 홈택스에서 제출을 마치면 위택스로 이동하는 버튼이 나와요. 지방소득세에도 같은 방식으로 가산세가 붙을 수 있고, 미리 낸 0.3%의 환급도 여기서 받아요.</p>
+
+<h2>정리하면</h2>
+<ul>
+  <li>환급받을 사람은 가산세 걱정 없이 지금 기한 후 신고를 해요.</li>
+  <li>낼 세금이 있다면 1개월 안에 신고하면 무신고가산세가 50% 줄어요.</li>
+  <li>놓친 환급은 5년 안에 기한 후 신고나 경정청구로 돌려받을 수 있어요.</li>
+  <li>다음 해에는 <a href="/guides/schedule">신고 일정 캘린더</a>로 5월 일정을 미리 챙겨두세요.</li>
+</ul>
+<p>가산세와 기한 후 신고 기준은 <a href="https://www.nts.go.kr" target="_blank" rel="noopener">국세청</a>에서 확인해주세요.</p>
+<p><small>최종 검토일: 2026년 10월 21일 · 2026년 기준</small></p>
+</div>
+<section>
+  <div class="sec-head"><h2>이어서 확인하기</h2></div>
+  <div class="next">
+    <a href="/tools/income-tax"><span>📊 종합소득세 예상 계산기<small>환급인지 추가 납부인지 먼저 확인</small></span></a>
+    <a href="/library/income-tax-hometax-guide"><span>🖥️ 홈택스 종합소득세 신고 따라하기<small>신고 순서는 기한 내 신고와 같아요</small></span></a>
+  </div>
+</section>
+
+<footer>
+  <nav><a href="/about">소개</a><a href="/contact">문의</a><a href="/privacy">개인정보처리방침</a><a href="/terms">이용약관</a></nav>
+  <p>본 결과는 참고용이며 법적 효력이 없습니다. 공식 기준은 <a href="https://www.nts.go.kr" target="_blank" rel="noopener">국세청</a>에서 확인하세요.<br>© 프리랜서 계산기 · freecalc.kr</p>
+</footer>
+
+</div>
+
+
+</body>
+</html>

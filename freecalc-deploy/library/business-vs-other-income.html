@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3.3% 대신 8.8%가 떼였다면? 사업소득과 기타소득 차이 | 프리랜서 계산기</title>
+<meta name="description" content="강의료·원고료에서 8.8%가 떼이는 이유와 사업소득(3.3%)과 기타소득(8.8%)의 차이, 기타소득을 5월에 어떻게 신고하면 유리한지 정리했습니다.">
+<link rel="canonical" href="https://www.freecalc.kr/library/business-vs-other-income">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="프리랜서 계산기">
+<meta property="og:title" content="3.3% 대신 8.8%가 떼였다면? 사업소득과 기타소득 차이 | 프리랜서 계산기">
+<meta property="og:description" content="강의료·원고료에서 8.8%가 떼이는 이유와 사업소득(3.3%)과 기타소득(8.8%)의 차이, 기타소득을 5월에 어떻게 신고하면 유리한지 정리했습니다.">
+<meta property="og:image" content="https://www.freecalc.kr/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://www.freecalc.kr/library/business-vs-other-income">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="3.3% 대신 8.8%가 떼였다면? 사업소득과 기타소득 차이 | 프리랜서 계산기">
+<meta name="twitter:description" content="강의료·원고료에서 8.8%가 떼이는 이유와 사업소득(3.3%)과 기타소득(8.8%)의 차이, 기타소득을 5월에 어떻게 신고하면 유리한지 정리했습니다.">
+<meta name="twitter:image" content="https://www.freecalc.kr/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="/common.css">
+<script src="/common.js"></script>
+<style>
+:root{
+  --bg:#FFFFFF; --hover:#F7F7F5;
+  --surface:#FFFFFF;
+  --ink:#191919;
+  --muted:#787774;
+  --line:#EAEAE8;
+  --accent:#191919;
+  --accent-soft:#F1F1EF;
+  --slate:#2B2F36;
+  --shadow:0 1px 2px rgba(0,0,0,.04),0 16px 40px rgba(23,25,28,.07);
+  --r:12px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:"Pretendard Variable",Pretendard,-apple-system,sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.6;font-size:16px;
+}
+.num{font-family:"Space Grotesk","Pretendard Variable",sans-serif;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.wrap{max-width:800px;margin:0 auto;padding:0 20px 90px}
+
+/* ── nav ── */
+nav{display:flex;justify-content:space-between;align-items:center;padding:20px 0}
+.logo{font-weight:800;font-size:19px;letter-spacing:-.02em;display:flex;align-items:center;gap:6px}
+.logo img{height:39px;width:auto;display:block}
+nav .links{display:flex;gap:18px;font-size:14px;color:var(--muted);font-weight:600}
+nav .links a{color:inherit;text-decoration:none}
+.nav-pick{position:relative}
+.nav-pick-btn{
+  font:inherit;font-size:14px;font-weight:600;color:var(--muted);background:none;border:none;
+  cursor:pointer;display:flex;align-items:center;gap:4px;padding:0;
+}
+.nav-pick-btn:hover{color:var(--ink)}
+.nav-pick-btn svg{transition:transform .15s}
+.nav-pick.open .nav-pick-btn{color:var(--ink)}
+.nav-pick.open .nav-pick-btn svg{transform:rotate(180deg)}
+.nav-pick-menu{
+  position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%);min-width:220px;
+  background:#FFFFFF;border:1px solid var(--line);border-radius:14px;
+  box-shadow:0 4px 12px rgba(0,0,0,.06),0 12px 32px rgba(23,25,28,.12);
+  padding:6px;display:none;z-index:200;
+}
+.nav-pick.open .nav-pick-menu{display:block}
+.nav-pick-menu a{
+  display:flex;align-items:center;gap:9px;font-size:14px;font-weight:600;color:var(--ink);
+  text-decoration:none;border-radius:9px;padding:10px 12px;white-space:nowrap;
+}
+.nav-pick-menu a:hover{background:var(--hover)}
+.nav-pick-menu a.current{font-weight:700;background:var(--hover)}
+.nav-pick-menu a .soon{margin-left:auto;font-size:10.5px;font-weight:700;color:var(--faint);background:var(--hover);border-radius:6px;padding:2px 6px}
+.nav-pick-menu a.current .soon{background:#fff}
+
+/* ── 모바일 nav: 햄버거 메뉴 ── */
+.nav-toggle{display:none}
+@media (max-width:640px){
+  nav{position:relative}
+  .nav-toggle{
+    display:flex;align-items:center;justify-content:center;
+    width:38px;height:38px;border:1px solid var(--line);border-radius:10px;
+    background:var(--surface);color:var(--ink);cursor:pointer;flex:none;
+  }
+  nav .links{
+    display:none;position:absolute;top:calc(100% + 8px);left:0;right:0;
+    flex-direction:column;align-items:stretch;gap:2px;
+    background:#FFFFFF;border:1px solid var(--line);border-radius:14px;
+    box-shadow:0 4px 12px rgba(0,0,0,.06),0 12px 32px rgba(23,25,28,.12);
+    padding:8px;z-index:150;
+  }
+  nav .links.open{display:flex}
+  nav .links > a{padding:12px 10px;border-radius:9px}
+  nav .links > a:hover{background:var(--hover)}
+  .nav-pick{width:100%}
+  .nav-pick-btn{width:100%;justify-content:space-between;padding:12px 10px;border-radius:9px}
+  .nav-pick-btn:hover{background:var(--hover)}
+  .nav-pick-menu{
+    position:static;transform:none;box-shadow:none;border:none;padding:0;
+    min-width:0;width:100%;margin-top:2px;background:var(--hover);border-radius:9px;
+  }
+}
+
+
+/* ── hero ── */
+.hero{padding:38px 0 30px}
+.eyebrow{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.13em;color:var(--ink);background:var(--hover);border-radius:999px;padding:6px 13px;margin-bottom:16px;text-transform:none}
+.eyebrow b{color:var(--accent);font-family:"Space Grotesk"}
+h1{font-size:clamp(32px,8vw,48px);font-weight:800;letter-spacing:-.035em;line-height:1.16}
+h1 em{font-style:normal;color:var(--accent);font-family:"Space Grotesk";font-weight:700}
+.hero p{margin-top:14px;color:var(--muted);font-size:16px;max-width:52ch}
+
+/* ── calc ── */
+.calc{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:26px 22px;margin-top:10px}
+.seg{display:flex;background:var(--hover);border-radius:12px;padding:4px;margin-bottom:22px}
+.seg button{
+  flex:1;font:inherit;font-size:14px;font-weight:700;padding:11px 6px;border:none;border-radius:9px;
+  background:transparent;color:var(--muted);cursor:pointer;transition:all .18s ease;
+}
+.seg button[aria-pressed="true"]{background:#FFFFFF;color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.seg button:not([aria-pressed="true"]):hover{color:var(--ink)}
+.guide-box{display:flex;gap:10px;align-items:flex-start;background:#FEF9E7;border-radius:12px;padding:14px 16px;margin-bottom:18px;font-size:13.5px;line-height:1.55;color:#5C5638}
+.guide-box .emo{font-size:16px;line-height:1.45;flex:none}
+.guide-box b{color:#3D3A22}
+label.field{display:block;font-size:13px;font-weight:700;color:var(--muted);margin-bottom:9px}
+.amount{display:flex;align-items:baseline;gap:10px;border-bottom:2px solid var(--ink);padding-bottom:8px;transition:border-color .18s}
+.amount:focus-within{border-color:var(--accent)}
+.amount input{
+  flex:1;border:none;background:transparent;outline:none;min-width:0;
+  font-family:"Space Grotesk","Pretendard Variable",sans-serif;
+  font-size:clamp(30px,8vw,40px);font-weight:700;letter-spacing:-.02em;color:var(--ink);
+  font-variant-numeric:tabular-nums;
+}
+.amount input::placeholder{color:#C9CBC6}
+.amount .won{font-size:18px;font-weight:700;color:var(--muted)}
+.quick{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+.quick button{
+  font:inherit;font-size:13px;font-weight:600;padding:8px 14px;border-radius:999px;cursor:pointer;
+  border:1px solid var(--line);background:var(--surface);color:var(--muted);transition:all .15s;
+}
+.quick button:hover{border-color:var(--ink);color:var(--ink)}
+
+/* ── result ── */
+.result{margin-top:28px;display:none}
+.result.on{display:block}
+.headline{display:flex;justify-content:space-between;align-items:flex-end;gap:10px;flex-wrap:wrap}
+.headline .k{font-size:13px;font-weight:700;color:var(--muted)}
+.big{font-family:"Space Grotesk","Pretendard Variable",sans-serif;font-size:clamp(34px,9vw,46px);font-weight:700;letter-spacing:-.03em;line-height:1.05;font-variant-numeric:tabular-nums}
+.big small{font-size:.5em;font-weight:700;margin-left:2px}
+.chip{
+  display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--accent);
+  background:var(--accent-soft);border-radius:999px;padding:6px 12px;
+  opacity:0;transform:scale(.7);transition:all .25s cubic-bezier(.2,1.6,.4,1);
+}
+.chip.on{opacity:1;transform:scale(1)}
+
+/* flow bar — signature */
+.flow{margin:22px 0 8px}
+.bar{display:flex;height:46px;border-radius:11px;overflow:hidden;background:var(--bg)}
+.bar div{transition:width .55s cubic-bezier(.3,.9,.3,1);min-width:2px}
+.bar .net{background:#1FAE5F}
+.bar .tax{background:#F0A93E}
+.bar .local{background:#4C7CF0}
+.legend{display:flex;gap:16px;margin-top:12px;flex-wrap:wrap;font-size:13px}
+.legend span{display:flex;align-items:center;gap:6px;color:var(--muted);font-weight:600}
+.legend i{width:10px;height:10px;border-radius:3px;display:inline-block}
+.legend .v{color:var(--ink);font-weight:700}
+
+.rows{margin-top:18px;border-top:1px solid var(--line)}
+.row{display:flex;justify-content:space-between;align-items:baseline;padding:12px 2px;border-bottom:1px solid var(--line);font-size:15px}
+.row .k{color:var(--muted);font-weight:600}
+.row .v{font-weight:700}
+.row.minus .v{color:var(--slate)}
+
+.actions{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap;justify-content:center}
+.actions button{display:flex;align-items:center;gap:7px;justify-content:center;
+  font:inherit;font-size:14px;font-weight:700;padding:12px 18px;border-radius:11px;cursor:pointer;transition:all .15s;
+}
+.btn-share{border:none;background:var(--ink);color:#fff}
+.btn-share:hover{background:#000}
+.btn-copy{border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+.btn-copy:hover{border-color:var(--ink)}
+.share-note{font-size:12px;color:var(--muted);margin-top:10px;text-align:center}
+.trust{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px;justify-content:center}
+.trust span{font-size:12px;font-weight:600;color:var(--muted);background:var(--bg);border-radius:7px;padding:5px 10px}
+
+/* ── sections ── */
+section{margin-top:56px}
+h2{font-size:22px;font-weight:800;letter-spacing:-.02em;margin-bottom:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px;margin-bottom:12px}
+.card h3{font-size:16px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:9px}
+.card h3 .hi{font-size:19px;line-height:1}
+.card p{font-size:14.5px;color:var(--muted);line-height:1.75}
+.card p+p{margin-top:10px}
+.card p b{color:var(--ink)}
+.formula{
+  font-family:"Space Grotesk","Pretendard Variable",sans-serif;font-variant-numeric:tabular-nums;
+  background:var(--hover);border-radius:10px;padding:14px 16px;font-size:16.5px;margin:10px 0;
+  font-weight:600;color:var(--ink);width:100%;text-align:center;
+}
+a{color:var(--ink);font-weight:700;text-underline-offset:3px}
+.next{display:grid;gap:10px}
+.next a{
+  display:flex;justify-content:space-between;align-items:center;background:var(--surface);
+  border:1px solid var(--line);border-radius:14px;padding:17px 18px;text-decoration:none;
+  font-weight:700;font-size:15px;transition:all .15s;
+}
+.next a:hover{border-color:var(--ink);transform:translateY(-1px)}
+.next a small{display:block;font-weight:500;font-size:12.5px;color:var(--muted);margin-top:2px}
+.next a::after{content:"→";color:var(--muted);font-weight:700}
+
+details{background:var(--surface);border:1px solid var(--line);border-radius:13px;margin-bottom:10px;overflow:hidden}
+summary{padding:16px 18px;font-weight:700;font-size:15px;cursor:pointer;list-style:none;display:flex;align-items:center;gap:10px}
+summary::after{content:"→";color:var(--muted);font-weight:700;margin-left:auto}
+summary .qi{font-size:17px;line-height:1;flex:none}
+summary::-webkit-details-marker{display:none}
+details p{padding:0 18px 16px 42px;font-size:14.5px;color:var(--muted);line-height:1.75}
+details p+p{margin-top:10px}
+details p b{color:var(--ink)}
+details[open] summary{border-bottom:1px solid var(--line);margin-bottom:12px}
+
+.ad-slot{margin:40px 0;min-height:100px;border:1px dashed var(--line);border-radius:13px;display:grid;place-items:center;color:#B9BCB6;font-size:12px;letter-spacing:.15em}
+
+footer{margin-top:64px;padding-top:24px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+footer nav{padding:0 0 12px;justify-content:flex-start;gap:16px}
+footer nav a{color:var(--muted);text-decoration:none;font-weight:600}
+
+@media (prefers-reduced-motion:reduce){
+  .bar div,.chip,.seg button,.next a{transition:none}
+}
+</style>
+
+
+<style>
+/* 한글이 좁은 flex/grid 레이아웃에서 한 글자씩 쪼개지는 것을 방지 */
+body, nav, .qopts button, .card, .next a, .next, .cmp-table{word-break:keep-all;overflow-wrap:break-word}
+.tl-item.important{background:var(--accent-soft);border-radius:14px;padding:20px 18px;margin:8px 0;border-bottom:none}
+.tl-item.important + .tl-item{border-top:none}
+.tl-star{display:inline-block;font-size:11px;font-weight:700;color:#fff;background:var(--ink);border-radius:999px;padding:3px 10px;margin-left:6px;vertical-align:middle}
+.guide-hero{padding:38px 0 20px}
+.guide-hero .eyebrow{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.13em;color:var(--ink);background:var(--hover);border-radius:999px;padding:6px 13px;margin-bottom:16px}
+.guide-hero p{margin-top:14px;color:var(--muted);font-size:16px;max-width:56ch}
+.timeline{margin-top:30px;border-top:1px solid var(--line)}
+.tl-item{display:flex;gap:18px;padding:20px 2px;border-bottom:1px solid var(--line)}
+.tl-month{flex:none;width:64px;font-family:"Space Grotesk","Pretendard Variable",sans-serif;font-size:20px;font-weight:800;color:var(--ink)}
+.tl-month small{display:block;font-size:11px;font-weight:700;color:var(--muted);font-family:"Pretendard Variable",sans-serif}
+.tl-body b{font-size:15.5px;font-weight:700}
+.tl-body p{margin-top:6px;font-size:14px;color:var(--muted);line-height:1.65}
+.tl-tag{display:inline-block;font-size:11px;font-weight:700;color:var(--accent);background:var(--accent-soft);border-radius:999px;padding:3px 10px;margin-left:6px;vertical-align:middle}
+.qbox{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:28px 24px;margin-top:24px}
+.qbox .qnum{font-size:12px;font-weight:700;color:var(--muted);margin-bottom:8px}
+.qbox h3{font-size:19px;font-weight:800;margin-bottom:18px;letter-spacing:-.01em}
+.qopts{display:grid;gap:10px}
+.qopts button{
+  font:inherit;font-size:15px;font-weight:700;text-align:left;padding:15px 18px;border-radius:12px;cursor:pointer;
+  border:1px solid var(--line);background:var(--surface);color:var(--ink);transition:all .15s;
+}
+.qopts button:hover{border-color:var(--ink);background:var(--hover)}
+.qresult{display:none;margin-top:24px}
+.qresult.on{display:block}
+.qresult .card{border:1px solid var(--line);background:var(--surface);box-shadow:var(--shadow)}
+.qresult .card h3{font-size:18px;font-weight:800;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.qrestart{margin-top:14px;font-size:13.5px;font-weight:700;color:var(--muted);background:none;border:none;cursor:pointer;text-decoration:underline;text-underline-offset:3px;padding:0}
+.cmp-table{width:100%;border-collapse:collapse;margin-top:24px;font-size:14.5px}
+.cmp-table th,.cmp-table td{padding:14px 14px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.cmp-table th{font-size:12.5px;font-weight:700;color:var(--muted);text-transform:none}
+.cmp-table td.k{font-weight:700;color:var(--ink);white-space:nowrap;width:110px}
+.cmp-table tbody tr:hover{background:var(--hover)}
+@media (max-width:640px){
+  .cmp-table{display:block;overflow-x:auto;white-space:nowrap}
+}
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "3.3% 대신 8.8%가 떼였다면? 사업소득과 기타소득 차이",
+  "url": "https://www.freecalc.kr/library/business-vs-other-income",
+  "description": "강의료·원고료에서 8.8%가 떼이는 이유와 사업소득(3.3%)과 기타소득(8.8%)의 차이, 기타소득을 5월에 어떻게 신고하면 유리한지 정리했습니다.",
+  "datePublished": "2026-10-21",
+  "dateModified": "2026-10-21",
+  "author": {"@type": "Organization", "name": "프리랜서 계산기"},
+  "publisher": {"@type": "Organization", "name": "프리랜서 계산기", "url": "https://www.freecalc.kr/"},
+  "isPartOf": {"@type": "WebSite", "name": "프리랜서 계산기", "url": "https://www.freecalc.kr/"},
+  "inLanguage": "ko-KR"
+}
+</script>
+</head>
+<body>
+<div class="wrap">
+<div id="site-nav"></div>
+<script src="/nav.js"></script>
+
+
+<style>
+.article-body h2{font-size:20px;font-weight:800;margin:36px 0 14px;letter-spacing:-.01em}
+.article-body h2:first-child{margin-top:0}
+.article-body p{color:var(--muted);font-size:15.5px;line-height:1.8;margin-bottom:14px}
+.article-body ul,.article-body ol{margin:14px 0 18px 0;padding-left:22px;color:var(--muted);font-size:15.5px;line-height:1.85}
+.article-body li{margin-bottom:8px}
+.article-body li b{color:var(--ink)}
+.article-body strong{color:var(--ink)}
+</style>
+
+<div class="guide-hero">
+  <div class="eyebrow">📚 세금 자료</div>
+  <h1>3.3% 대신 <em>8.8%</em>가 떼였다면</h1>
+  <p>같은 일을 했는데 어떤 곳은 3.3%, 어떤 곳은 8.8%를 뗐다면 소득 종류가 다르게 처리된 거예요. 둘의 차이와 신고 방법을 정리했어요.</p>
+</div>
+
+<div class="article-body">
+<h2>사업소득과 기타소득, 뭐가 다를까요</h2>
+<p>프리랜서가 받는 돈은 크게 <b>사업소득</b>과 <b>기타소득</b> 중 하나로 처리돼요. 둘을 가르는 기준은 <b>계속적이고 반복적으로 하는 일인지</b>예요.</p>
+<ul>
+  <li><b>사업소득 (3.3%):</b> 디자인, 개발, 촬영처럼 직업으로 꾸준히 하는 일에서 받는 돈이에요.</li>
+  <li><b>기타소득 (8.8%):</b> 본업과 상관없이 어쩌다 한 번 하는 강연, 원고 기고, 심사, 자문처럼 일시적인 일에서 받는 돈이에요.</li>
+</ul>
+<p>같은 강의라도 강사가 본업이라 매달 강의를 한다면 사업소득이고, 디자이너가 1년에 한 번 특강을 했다면 기타소득으로 보는 게 일반적이에요. 지급처가 어떻게 판단해서 신고하느냐에 따라 떼는 세율이 달라져요.</p>
+
+<h2>8.8%는 이렇게 나와요</h2>
+<p>기타소득 중 강연료·원고료 같은 소득은 받은 돈의 <b>60%를 필요경비로 인정</b>해줘요. 남은 40%에 소득세 20%를 매기고, 지방소득세 10%가 붙어요.</p>
+<div class="formula">지급액 × 40% × 22% = 지급액의 8.8%</div>
+<table class="cmp-table">
+  <thead><tr><th>지급액</th><th>사업소득 (3.3%)</th><th>기타소득 (8.8%)</th></tr></thead>
+  <tbody>
+    <tr><td class="k">50만 원</td><td>16,500원 → 483,500원</td><td>44,000원 → 456,000원</td></tr>
+    <tr><td class="k">100만 원</td><td>33,000원 → 967,000원</td><td>88,000원 → 912,000원</td></tr>
+    <tr><td class="k">300만 원</td><td>99,000원 → 2,901,000원</td><td>264,000원 → 2,736,000원</td></tr>
+  </tbody>
+</table>
+<p>당장 떼는 금액은 기타소득이 더 많아요. 하지만 이것도 3.3%처럼 <b>미리 낸 세금</b>이라서, 5월 신고 방법에 따라 일부를 돌려받을 수 있어요.</p>
+
+<h2>세금을 안 떼는 작은 금액도 있어요</h2>
+<p>기타소득은 필요경비를 뺀 <b>기타소득금액이 건당 5만 원 이하</b>면 세금을 매기지 않아요(과세최저한). 60% 경비가 인정되는 강연료라면 <b>지급액 12만 5천 원 이하</b>일 때 세금 없이 전액을 받아요.</p>
+
+<h2>5월에는 이렇게 신고해요</h2>
+<p>기타소득은 금액에 따라 신고 방법을 고를 수 있어요.</p>
+<ul>
+  <li><b>기타소득금액이 연 300만 원 이하 (지급액 약 750만 원 이하):</b> 8.8% 원천징수로 끝내는 <b>분리과세</b>와, 다른 소득과 합쳐 신고하는 <b>종합과세</b> 중 유리한 쪽을 골라요.</li>
+  <li><b>연 300만 원 초과:</b> 반드시 다른 소득과 합쳐서 종합과세로 신고해요.</li>
+</ul>
+<p>판단 기준은 내 <b>종합소득세 세율</b>이에요. 분리과세 세율은 20%로 고정이라, 사업소득을 합친 내 세율이 20%보다 낮으면(과세표준 5,000만 원 이하 구간은 6~15%) 종합과세로 합쳐 신고하는 게 유리해요. 미리 낸 20%와 실제 세율의 차이만큼 돌려받을 수 있기 때문이에요. 반대로 소득이 커서 세율이 24% 이상이라면 분리과세가 유리할 수 있어요.</p>
+
+<h2>예시로 보면</h2>
+<p>사업소득 과세표준이 2,000만 원(세율 15% 구간)인 디자이너가 특강료로 300만 원을 받았다고 해볼게요. 기타소득금액은 120만 원이고, 미리 낸 소득세는 24만 원이에요.</p>
+<ul>
+  <li><b>분리과세:</b> 24만 원으로 끝나요. 추가 정산이 없어요.</li>
+  <li><b>종합과세:</b> 120만 원이 과세표준에 더해져 15% 세율로 약 18만 원이 계산돼요. 미리 낸 24만 원과의 차이인 약 6만 원을 돌려받아요.</li>
+</ul>
+<p>저도 처음 특강료를 받았을 때 8.8%가 떼여서 계산이 잘못된 줄 알았어요. 나중에 5월에 종합과세로 합쳐 신고하면서 일부를 돌려받고 나서야 구조를 이해했어요.</p>
+
+<h2>자주 묻는 질문</h2>
+<p><b>Q. 같은 회사에서 두 번 강의했는데도 기타소득인가요?</b><br>횟수만으로 정해지지는 않아요. 강의가 본업과 관련 있고 앞으로도 계속할 예정이라면 사업소득에 가깝고, 본업과 상관없는 일회성 초청이라면 기타소득으로 보는 경우가 많아요. 애매하다면 지급처 담당자와 미리 이야기해두는 게 좋아요.</p>
+<p><b>Q. 기타소득을 분리과세로 끝냈는데 신고서에 안 넣어도 되나요?</b><br>네, 연 기타소득금액이 300만 원 이하이고 분리과세를 선택한다면 종합소득세 신고서에 넣지 않아도 돼요. 반대로 종합과세가 유리하다면 신고서에 기타소득을 함께 넣어야 환급을 받을 수 있어요.</p>
+
+<h2>확인해야 할 것들</h2>
+<ul>
+  <li><b>꾸준히 하는 일인데 8.8%로 처리됐다면:</b> 지급처에 사업소득으로 처리해달라고 요청할 수 있어요. 반복적인 일을 기타소득으로 신고하면 나중에 문제가 될 수 있어요.</li>
+  <li><b>건강보험:</b> 기타소득도 소득으로 합산돼 지역가입자 보험료나 피부양자 자격에 영향을 줄 수 있어요. <a href="/library/freelancer-health-insurance">프리랜서 건강보험료 정리</a>를 참고해보세요.</li>
+  <li><b>조회 방법:</b> 어떤 소득으로 신고됐는지는 홈택스의 지급명세서 조회에서 확인할 수 있어요. 방법은 <a href="/library/withholding-receipt-hometax">원천징수영수증 조회하기</a>에 정리해뒀어요.</li>
+</ul>
+<p>내 사업소득 세율이 어느 구간인지는 <a href="/tools/income-tax">종합소득세 예상 계산기</a>로 확인할 수 있어요. 기타소득 기준은 <a href="https://www.nts.go.kr" target="_blank" rel="noopener">국세청</a>에서 확인해주세요.</p>
+<p><small>최종 검토일: 2026년 10월 21일 · 2026년 기준</small></p>
+</div>
+<section>
+  <div class="sec-head"><h2>이어서 확인하기</h2></div>
+  <div class="next">
+    <a href="/tools/withholding-33"><span>🧾 3.3% 원천징수 계산기<small>사업소득 실수령액 계산</small></span></a>
+    <a href="/library/withholding-receipt-hometax"><span>🗂️ 원천징수영수증 조회하기<small>어떤 소득으로 신고됐는지 확인</small></span></a>
+  </div>
+</section>
+
+<footer>
+  <nav><a href="/about">소개</a><a href="/contact">문의</a><a href="/privacy">개인정보처리방침</a><a href="/terms">이용약관</a></nav>
+  <p>본 결과는 참고용이며 법적 효력이 없습니다. 공식 기준은 <a href="https://www.nts.go.kr" target="_blank" rel="noopener">국세청</a>에서 확인하세요.<br>© 프리랜서 계산기 · freecalc.kr</p>
+</footer>
+
+</div>
+
+
+</body>
+</html>
