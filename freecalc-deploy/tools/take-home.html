@@ -239,7 +239,7 @@ footer a{color:var(--muted);text-decoration:none}
       "name": "🏥프리랜서 지역가입자 건강보험료는 얼마나 나오나요?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "지역가입자 건강보험료는 소득뿐 아니라 재산·자동차까지 반영해 산정되므로 사람마다 편차가 큽니다. 이 계산기는 소득 기준 추정치만 다루므로, 정확한 금액은 국민건강보험공단 홈페이지의 '지역보험료 모의계산'에서 확인하는 것이 정확합니다."
+        "text": "지역가입자 건강보험료는 소득뿐 아니라 재산까지 반영해 산정되므로 사람마다 편차가 큽니다. 이 계산기는 소득 기준 추정치만 다루므로, 정확한 금액은 국민건강보험공단 홈페이지의 '지역보험료 모의계산'에서 확인하는 것이 정확합니다."
       }
     },
     {
@@ -374,7 +374,7 @@ footer a{color:var(--muted);text-decoration:none}
   </div>
   <div class="card">
     <h3><span class="hi">⚠️</span>주의할 점</h3>
-    <p>· 정규직 소득세는 간이세액표를 근사한 값이라 실제 급여명세서와 수만 원 차이가 날 수 있습니다. 비과세 식대·연장수당 등은 반영하지 않습니다.</p>
+    <p>· 정규직 소득세는 4대보험료 공제와 표준세액공제를 반영해 간이세액표를 근사한 값이라 실제 급여명세서와 수만 원 차이가 날 수 있습니다. 비과세 식대·연장수당 등은 반영하지 않습니다.</p>
     <p>· 프리랜서의 실수령이 커 보여도, 지역가입자 국민연금·건강보험을 스스로 내야 할 수 있습니다. 그 비용까지 생각하면 체감 차이는 줄어듭니다.</p>
     <p>· 프리랜서의 3.3%는 선납이라 5월 종합소득세 신고에서 환급될 수 있습니다.</p>
   </div>
@@ -410,7 +410,7 @@ footer a{color:var(--muted);text-decoration:none}
   </details>
   <details>
     <summary><span class="qi">🏥</span>프리랜서 지역가입자 건강보험료는 얼마나 나오나요?</summary>
-    <p>지역가입자 건강보험료는 소득뿐 아니라 재산·자동차까지 반영해 산정되므로 사람마다 편차가 큽니다. 이 계산기는 소득 기준 추정치만 다루므로, 정확한 금액은 <a href="https://www.nhis.or.kr" target="_blank" rel="noopener">국민건강보험공단</a> 홈페이지의 '지역보험료 모의계산'에서 확인하는 것이 정확합니다.</p>
+    <p>지역가입자 건강보험료는 소득뿐 아니라 재산까지 반영해 산정되므로 사람마다 편차가 큽니다. 이 계산기는 소득 기준 추정치만 다루므로, 정확한 금액은 <a href="https://www.nhis.or.kr" target="_blank" rel="noopener">국민건강보험공단</a> 홈페이지의 '지역보험료 모의계산'에서 확인하는 것이 정확합니다.</p>
   </details>
   <details>
     <summary><span class="qi">📅</span>프리랜서도 실업급여를 받을 수 있나요?</summary>
@@ -485,7 +485,8 @@ const RULES = {
   year:2026,
   free:{income:0.03, localOfIncome:0.10},
   emp:{pension:0.0475, pensionCapBase:6370000, pensionFloorBase:400000, health:0.03595, ltcOfHealth:0.1314, employ:0.009},
-  basicDeduct:1500000
+  basicDeduct:1500000,
+  stdCredit:130000
 };
 const $=id=>document.getElementById(id);
 const floor10=n=>Math.floor(n/10)*10;
@@ -524,10 +525,12 @@ function earnedCredit(tax, salary){
   else cap=Math.max(5.0e5-(salary-120e6)*0.5, 2.0e5);
   return Math.min(c, cap);
 }
-function empIncomeTax(monthly, deps){
+/* insMonthly: 근로자 부담 4대보험료(월) — 연금보험료공제·특별소득공제로 차감 */
+function empIncomeTax(monthly, deps, insMonthly){
   const annual = monthly*12;
-  const taxable = Math.max(0, annual - earnedDeduction(annual) - RULES.basicDeduct*deps);
-  const yearTax = Math.max(0, baseTax(taxable) - earnedCredit(baseTax(taxable), annual));
+  const taxable = Math.max(0, annual - earnedDeduction(annual) - RULES.basicDeduct*deps - insMonthly*12);
+  const calcTax = baseTax(taxable);
+  const yearTax = Math.max(0, calcTax - earnedCredit(calcTax, annual) - RULES.stdCredit);
   const m = floor10(yearTax/12);
   return { income:m, local:floor10(m*0.1) };
 }
@@ -549,7 +552,7 @@ function calc(){
   const hel=floor10(g*RULES.emp.health);
   const ltc=floor10(hel*RULES.emp.ltcOfHealth);
   const emp=floor10(g*RULES.emp.employ);
-  const t=empIncomeTax(g,deps);
+  const t=empIncomeTax(g,deps,pen+hel+ltc+emp);
   const eDed=pen+hel+ltc+emp+t.income+t.local;
   const eNet=g-eDed;
   const fDed=fTax+fLocal;
